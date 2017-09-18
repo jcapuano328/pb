@@ -1,0 +1,18 @@
+[
+	{
+	    "id": 1,
+	    "name": "Marengo",	    
+	    "image": "marengo",
+		"command": [
+			{"side": "French", "image": "french", "code": "B", "name": "Napoleon", "rating": 5},
+			{"side": "French", "image": "french", "code": "C", "name": "Murat", "rating": 4},
+			{"side": "French", "image": "french", "code": "L", "name": "Lanne", "rating": 4},
+			{"side": "French", "image": "french", "code": "V", "name": "Victor", "rating": 4},
+			{"side": "French", "image": "french", "code": "D", "name": "Desaix", "rating": 4},			
+			{"side": "Austrian", "image": "austrian", "code": "M", "name": "Melas", "rating": 3},
+			{"side": "Austrian", "image": "austrian", "code": "L", "name": "Ott", "rating": 3},
+			{"side": "Austrian", "image": "austrian", "code": "R", "name": "O'Reilly", "rating": 3}
+		],
+		"turns": 8
+	}
+]

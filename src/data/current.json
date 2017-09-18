@@ -1,0 +1,8 @@
+{
+    "game": "int",
+    "turn": "int",
+    "command": {
+        "cup": "array",
+        "chit": "object"
+    }
+}
