@@ -1,0 +1,39 @@
+{
+	"name": "pb",
+	"version": "1.0.0",
+	"private": true,
+	"scripts": {
+		"start": "node node_modules/react-native/local-cli/cli.js start",
+		"debug": "node node_modules/react-native/local-cli/cli.js run-android",
+		"build-rel": "cd android && gradlew assembleRelease && cd ..",
+		"build-stg": "cd android && gradlew assembleReleaseStaging && cd ..",
+		"build-dbg": "cd android && gradlew assembleDebug && cd ..",    
+		"install-dbg": "adb -d install -r android/app/build/outputs/apk/pb-debug-1.0.apk",
+		"install-stg": "adb -d install -r android/app/build/outputs/apk/pb-releaseStaging-1.0.apk",    
+		"install-rel": "adb -d install -r android/app/build/outputs/apk/pb-release-1.0.apk",
+		"push": "code-push release-react PubBattlesAssistant android",
+		"promote": "code-push promote PubBattlesAssistant Staging Production --description '' --mandatory",    
+		"bridge": "adb reverse tcp:8081 tcp:8081",
+		"menu": "adb shell input keyevent 82",
+		"logs": "adb logcat *:S ReactNative:V ReactNativeJS:V"
+	},
+	"dependencies": {
+		"moment": "^2.14.1",
+		"react": "^15.4.1",
+		"react-native": "^0.39.2",
+		"react-native-code-push": "^1.17.2-beta",
+		"react-native-dice": "https://git@github.com/jcapuano328/react-native-dice.git",
+		"react-native-nub": "https://git@github.com/jcapuano328/react-native-nub.git",
+		"react-native-scrollable-tab-view": "^0.5.3",
+		"reselect": "^2.5.4"
+	},
+	"devDependencies": {
+		"babel-jest": "21.0.2",
+		"babel-preset-react-native": "4.0.0",
+		"jest": "21.1.0",
+		"react-test-renderer": "16.0.0-alpha.12"
+	},
+	"jest": {
+		"preset": "react-native"
+	}
+}

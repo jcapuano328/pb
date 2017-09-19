@@ -2,12 +2,11 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import {Style,SpinSelect} from 'react-native-nub';
-import TurnPlayerView from '../common/turnPlayerView';
-import Icons from '../../res';
-import {prevTurn,nextTurn,prevPhase,nextPhase} from '../../actions/current';
-import getGame from '../../selectors/game';
-import getTurn from '../../selectors/turn';
-import getPhase from '../../selectors/phase';
+import TurnCommandView from './turnCommandView';
+import Icons from '../res';
+import {prevTurn,nextTurn} from '../actions/current';
+import getGame from '../selectors/game';
+import getTurn from '../selectors/turn';
 
 var TurnView = React.createClass({
     getInitialState() {
@@ -38,14 +37,6 @@ var TurnView = React.createClass({
         //console.log('next turn');
         this.props.nextTurn();        
     },
-    onPrevPhase() {
-        //console.log('previous phase');
-        this.props.prevPhase();        
-    },
-    onNextPhase() {
-        //console.log('next phase');
-        this.props.nextPhase();        
-    },
     render() {
         //console.log(this.props);
         let iconwidth = this.state.width || 96;
@@ -53,14 +44,13 @@ var TurnView = React.createClass({
         return (
             <View style={{flexDirection: 'row', alignItems:'center', height: Style.Scaling.scale(75), marginLeft: 5, marginRight: 5}}>
                 <View style={{flex: 1, justifyContent:'center', marginRight: 2}} onLayout={this.onLayout}>
-                    <Image style={{width: iconwidth,height: iconheight,resizeMode: 'contain'}} source={Icons[this.props.logo]}/>
+                    <Image style={{width: iconwidth,height: iconheight,resizeMode: 'contain'}} source={Icons[this.props.game.image]}/>
                 </View>
                 <View style={{flex: 4}}>
-                    <SpinSelect value={this.props.turn} onPrev={this.onPrevTurn} onNext={this.onNextTurn} />
-                    <SpinSelect value={this.props.phase} onPrev={this.onPrevPhase} onNext={this.onNextPhase} />
+                    <SpinSelect value={this.props.turn} onPrev={this.onPrevTurn} onNext={this.onNextTurn} />                    
                 </View>
                 <View style={{flex: 1, marginLeft: 2}}>
-                    <TurnPlayerView />
+                    <TurnCommandView />
                 </View>
             </View>
         );
@@ -68,12 +58,11 @@ var TurnView = React.createClass({
 });
 
 const mapStateToProps = (state) => ({
-    battle: getGame(state),
-    turn: getTurn(state),
-    phase: getPhase(state)
+    game: getGame(state),
+    turn: getTurn(state)
 });
 
-const mapDispatchToProps =  ({prevTurn,nextTurn,prevPhase,nextPhase});
+const mapDispatchToProps =  ({prevTurn,nextTurn});
 
 module.exports = connect(
   mapStateToProps,

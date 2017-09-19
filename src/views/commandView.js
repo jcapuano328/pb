@@ -2,29 +2,29 @@ import React from 'react';
 import { View, ScrollView, Text, Image } from 'react-native';
 import { connect } from 'react-redux';
 import {Style,IconButton} from 'react-native-nub';
-import Icons from '../../res';
-import ManeuverUnit from './maneuverUnit';
-import {resetMUCup,addMUToCup,removeMUFromCup,drawMUFromCup} from '../../actions/current';
+import Icons from '../res';
+import CommandChit from './commandChit';
+import {resetChitCup,addChitToCup,removeChitFromCup,drawChitFromCup} from '../actions/current';
 
-var ManeuverView = React.createClass({
+var CommandView = React.createClass({
     onReset() {
-        this.props.resetMUCup();        
+        this.props.resetChitCup();        
     },
-    onAdd(player) {
+    onAdd(chit) {
         return (e) => {
-            this.props.addMUToCup(player);            
+            this.props.addChitToCup(chit);            
         }
     },
     onRemove(item) {
         return (e) => {        
-            this.props.removeMUFromCup(item);            
+            this.props.removeChitFromCup(item);            
         }
     },    
     onDraw() {        
-        this.props.drawMUFromCup();//true);        
+        this.props.drawChitFromCup();//true);        
     },
     render() {                  
-        let mu = this.props.mu || {};        
+        let chit = this.props.chit || {};        
         return (
             <View style={{flex: 1}}>
                 {/*top*/}
@@ -32,7 +32,7 @@ var ManeuverView = React.createClass({
                     <View style={{flex:2}}>
                         <Text style={{fontSize: Style.Font.medium(),fontWeight: 'bold',backgroundColor: 'silver', textAlign: 'center'}}>Current</Text>                        
                         <View style={{flex:1, justifyContent: 'center', alignItems:'center'}}>
-                            <ManeuverUnit item={mu} size={88} />
+                            <CommandChit item={chit} size={88} />
                         </View>
                     </View>   
                 </View>
@@ -47,7 +47,7 @@ var ManeuverView = React.createClass({
                                 scrollEventThrottle={200}>
                                 {this.sides().map((p,i) => 
                                     <View key={i} style={{paddingBottom: 5, justifyContent: 'center'}}>
-                                        <ManeuverUnit item={{image: p}} size={64} onPress={this.onAdd(p)} />                                        
+                                        <CommandChit item={{image: p}} size={64} onPress={this.onAdd(p)} />                                        
                                     </View>
                                 )}
                             </ScrollView>                        
@@ -78,7 +78,7 @@ var ManeuverView = React.createClass({
                                     }}
                                 >                            
                                     {this.props.cup.map((item,i) => 
-                                        <ManeuverUnit key={i} item={item} size={32} onPress={this.onRemove(item)} />
+                                        <CommandChit key={i} item={item} size={32} onPress={this.onRemove(item)} />
                                     )}
                                 </View>
                             </Image>                        
@@ -89,21 +89,18 @@ var ManeuverView = React.createClass({
         );
     },
     sides() {        
-        if (this.props.battle.rules.maneuver) {
-            return this.props.battle.rules.maneuver.sides;
-        }
-        return this.props.battle.players;
+        return this.props.game.command;
     }
 });
 
 const mapStateToProps = (state) => ({    
-    cup: state.current.maneuver.cup || [],
-    mu: state.current.maneuver.mu
+    cup: state.current.command.cup || [],
+    chit: state.current.command.chit
 });
 
-const mapDispatchToProps =  ({resetMUCup,addMUToCup,removeMUFromCup,drawMUFromCup});
+const mapDispatchToProps =  ({resetChitCup,addChitToCup,removeChitFromCup,drawChitFromCup});
 
 module.exports = connect(
   mapStateToProps,
   mapDispatchToProps
-)(ManeuverView);
+)(CommandView);

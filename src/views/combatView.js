@@ -3,29 +3,18 @@ import { View, Text, Switch } from 'react-native';
 import { connect } from 'react-redux';
 import {Style} from 'react-native-nub';
 import {DiceRoll} from 'react-native-dice';
-import FireAttackerView from './fireAttackerView';
-import FireDefenderView from './fireDefenderView';
-import DiceModifiersView from './diceModifiersView';
-import CombatResultsView from './combatResultsView';
-import Fire from '../../services/fire';
-import Base6 from '../../services/base6';
 
 var FireView = React.createClass({
     dice: [
-        {num: 1, low: 1, high: 6, diecolor: 'red', dotcolor:'white'},
+        {num: 1, low: 1, high: 6, diecolor: 'white', dotcolor:'black'},
+        {num: 1, low: 1, high: 6, diecolor: 'white', dotcolor:'black'},
         {num: 1, low: 1, high: 6, diecolor: 'white', dotcolor:'black'},
         {num: 1, low: 1, high: 6, diecolor: 'blue', dotcolor:'white'},
-        {num: 1, low: 1, high: 6, diecolor: 'black', dotcolor:'white'},
-        {num: 1, low: 1, high: 6, diecolor: 'black', dotcolor:'red'},
-        {num: 1, low: 1, high: 6, diecolor: 'purple', dotcolor:'white'},
-        {num: 1, low: 1, high: 6, diecolor: 'yellow', dotcolor:'black'}
+        {num: 1, low: 1, high: 6, diecolor: 'blue', dotcolor:'white'},
+        {num: 1, low: 1, high: 6, diecolor: 'blue', dotcolor:'white'}
     ],
     getInitialState() {
         return {
-            attack: '1',
-            defend: '1',
-            odds: Fire.defaultOdds,
-            cannister: false,
             die1: 1,
             die2: 1,
             die3: 1,
@@ -34,44 +23,6 @@ var FireView = React.createClass({
             die6: 1,
             die7: 1
         };
-    },
-    calcOdds(attack, defend, cannister) {
-        // calc odds
-        var odds = Fire.calculate(+attack, +defend, cannister);
-        return odds;
-    },
-    onAttackerAdd(v) {
-        v = +this.state.attack + (+v);
-        this.state.odds = this.calcOdds(v, this.state.defend, this.state.cannister);
-        this.state.attack = v.toString();
-        this.onResolve();
-    },
-    onAttackerChanged(v) {
-        this.state.odds = this.calcOdds(v, this.state.defend, this.state.cannister);
-        this.state.attack = v.toString();
-        this.onResolve();
-    },
-    onDefenderAdd(v) {
-        v = +this.state.defend + (+v);
-        this.state.odds = this.calcOdds(this.state.attack, v, this.state.cannister);
-        this.state.defend = v.toString();
-        this.onResolve();
-    },
-    onDefenderChanged(v) {
-        this.state.odds = this.calcOdds(this.state.attack, v, this.state.cannister);
-        this.state.defend = v.toString();
-        this.onResolve();
-    },
-    onCannisterChanged(v) {
-        this.state.cannister = v;
-        this.state.odds = this.calcOdds(this.state.attack, this.state.defend, this.state.cannister);
-        this.onResolve();
-    },
-    onDiceModifierChanged(v) {
-        let d = Base6.add((this.state.die1 * 10) + this.state.die2, +v);
-        this.state.die1 = Math.floor(d / 10);
-        this.state.die2 = d % 10;
-        this.onResolve();
     },
     onDieChanged(d,v) {
         this.state['die'+d] = v;
