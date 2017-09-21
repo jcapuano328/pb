@@ -8,6 +8,7 @@ const getTurn = (state) => state.current.turn;
 export default createSelector(
     [getTurn, getGame],
     (turn, game) => {
+        /*
         if (!game || !game.start) {
             return '';
         }
@@ -15,5 +16,7 @@ export default createSelector(
 		let o = (turn - 1) * TURN_MINS;
 		d.add(o, 'minutes');
         return d.format("MMM DD, YYYY HH:mm");
+        */
+        return turn.toString();
     }    
 );

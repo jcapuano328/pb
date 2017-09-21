@@ -12,12 +12,12 @@ var CommandView = React.createClass({
     },
     onAdd(chit) {
         return (e) => {
-            this.props.addChitToCup(chit);            
+            this.props.addChitToCup(chit);
         }
     },
-    onRemove(item) {
+    onRemove(chit) {
         return (e) => {        
-            this.props.removeChitFromCup(item);            
+            this.props.removeChitFromCup(chit);
         }
     },    
     onDraw() {        
@@ -45,9 +45,9 @@ var CommandView = React.createClass({
                             <ScrollView contentContainerStyle={{flex:1, justifyContent:'flex-start', alignItems:'center'}}
                                 automaticallyAdjustContentInsets={false}
                                 scrollEventThrottle={200}>
-                                {this.sides().map((p,i) => 
+                                {this.props.game.command.map((c,i) => 
                                     <View key={i} style={{paddingBottom: 5, justifyContent: 'center'}}>
-                                        <CommandChit item={{image: p}} size={64} onPress={this.onAdd(p)} />                                        
+                                        <CommandChit item={c} size={64} onPress={this.onAdd(c)} />
                                     </View>
                                 )}
                             </ScrollView>                        
@@ -77,8 +77,8 @@ var CommandView = React.createClass({
                                         marginRight: Style.Scaling.scale(30)
                                     }}
                                 >                            
-                                    {this.props.cup.map((item,i) => 
-                                        <CommandChit key={i} item={item} size={32} onPress={this.onRemove(item)} />
+                                    {this.props.cup.map((c,i) => 
+                                        <CommandChit key={i} chit={c} size={32} onPress={this.onRemove(c)} />
                                     )}
                                 </View>
                             </Image>                        
@@ -87,9 +87,6 @@ var CommandView = React.createClass({
                 </View>            
             </View>
         );
-    },
-    sides() {        
-        return this.props.game.command;
     }
 });
 

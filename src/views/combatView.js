@@ -1,18 +1,45 @@
 import React from 'react';
-import { View, Text, Switch } from 'react-native';
+import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
-import {Style} from 'react-native-nub';
-import {DiceRoll} from 'react-native-dice';
+import {Style,MultiSelectList} from 'react-native-nub';
+import {Dice,DiceTray,RollButton} from 'react-native-dice';
 
-var FireView = React.createClass({
-    dice: [
+var CombatResolution = React.createClass({
+    render() {
+        return (
+            <View style={{flex: 1}}>                
+                <Text style={{fontSize: Style.Font.medium(),fontWeight: 'bold',backgroundColor: 'silver', textAlign: 'center'}}>{this.props.title}</Text>
+                <View style={{flex: 1}}>
+                    <DiceTray size={Style.Scaling.scale(64)} dice={this.props.dice} values={this.props.dice.map((d) => d.value)} onDie={this.props.onDieChanged}/>
+                </View>
+                <View style={{flex: 1}}>
+                    <Text>Tally number of hits</Text>
+                </View>
+                <View style={{flex: 1}}>
+                    <MultiSelectList title={'Modifiers'}
+                                    items={this.props.modifiers.map((m) => ({name: m.name, selected: this.props.mods[m.name]}))}
+                                    onChanged={this.props.onModChanged}/>
+                </View>
+            </View>
+        );
+    }
+});
+
+var CombatView = React.createClass({
+    diceAttack: new Dice.Dice([
         {num: 1, low: 1, high: 6, diecolor: 'white', dotcolor:'black'},
         {num: 1, low: 1, high: 6, diecolor: 'white', dotcolor:'black'},
-        {num: 1, low: 1, high: 6, diecolor: 'white', dotcolor:'black'},
+        {num: 1, low: 1, high: 6, diecolor: 'white', dotcolor:'black'}
+    ]),
+    modifiersAttack: [
+        {name: 'flank', value: 1},
+        {name: 'flank', value: 1},
+    ],
+    diceDefend: new Dice.Dice([
         {num: 1, low: 1, high: 6, diecolor: 'blue', dotcolor:'white'},
         {num: 1, low: 1, high: 6, diecolor: 'blue', dotcolor:'white'},
         {num: 1, low: 1, high: 6, diecolor: 'blue', dotcolor:'white'}
-    ],
+    ]),
     getInitialState() {
         return {
             die1: 1,
@@ -21,21 +48,29 @@ var FireView = React.createClass({
             die4: 1,
             die5: 1,
             die6: 1,
-            die7: 1
+            attackmods: {},
+            defendmods: {}
         };
     },
-    onDieChanged(d,v) {
+    onDieChangedAttack(d,v) {
         this.state['die'+d] = v;
         this.onResolve();
     },
-    onDiceRoll(d) {
-        this.state.die1 = d[0].value;
-        this.state.die2 = d[1].value;
-        this.state.die3 = d[2].value;
-        this.state.die4 = d[3].value;
-        this.state.die5 = d[4].value;
-        this.state.die6 = d[5].value;
-        this.state.die7 = d[6].value;
+    onModChangedAttack(m) {
+        this.state.attackmods[m.name] = m.selected;
+        this.onResolve();
+    },
+    onDieChangedDefend(d,v) {
+        this.state['die'+(d+3)] = v;
+        this.onResolve();
+    },
+    onModChangedDefend(m) {
+        this.state.defendmods[m.name] = m.selected;
+        this.onResolve();
+    },
+    onDiceRoll() {
+        this.roll(this.diceAttack, 0);
+        this.roll(this.diceDefend, 3);
         
         this.onResolve();
     },
@@ -43,54 +78,26 @@ var FireView = React.createClass({
         this.setState(this.state);
     },
     render() {
-        //console.log(this.props);
-        let attsize = this.props.attsize || 2;
         return (
             <View style={{flex: 1}}>                
-                <View style={{flex: 1, backgroundColor: 'whitesmoke', justifyContent:'flex-start'}}>
-                    <View style={{flex: .75, flexDirection: 'row', alignItems: 'center', marginTop:5}}>
-                        <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2,this.state.die3,this.state.die4,this.state.die5,this.state.die6,this.state.die7]}
-                            onRoll={this.onDiceRoll} onDie={this.onDieChanged}/>
-                    </View>
-                    <View style={{flex: 1}}>
-                        <DiceModifiersView onChange={this.onDiceModifierChanged} />
-                    </View>
-                    <View style={{flex:2.15}}>                        
-                        <CombatResultsView odds={this.state.odds}
-                            results={Fire.resolvePossible((this.state.die1*10) + this.state.die2)}
-                            combatdice={(this.state.die1*10) + this.state.die2}
-                            lossdie={this.state.die3}
-                            durationdie1={this.state.die4}
-                            durationdie2={this.state.die5}
-                            moraledice={(this.state.die6*10) + this.state.die7}                            
-                        />                        
-                    </View>
-                    <View style={{flex: 0.35, flexDirection: 'row', justifyContent: 'center', alignItems:'center'}}>
-                        <Text style={{fontSize: Style.Font.medium()}}>Cannister</Text>
-                        <Switch value={this.state.cannister} onValueChange={this.onCannisterChanged} />
-                    </View>                    
-                </View>
                 <View style={{flex:1, flexDirection:'row'}}>
-                    <View style={{flex:attsize}}>                        
-                        <FireAttackerView value={this.state.attack}
-                            onAdd={this.onAttackerAdd}
-                            onChanged={this.onAttackerChanged}
-                            onModifierChanged={this.onAttackerModifierChanged}
-                            detailView={this.props.attackerDetail}
-                            battle={this.props.battle} />
+                    <View style={{flex:3}}>
+                        <CombatResolution title={'Attacker'} dice={this.diceAttack} onDieChanged={this.onDieChangedAttack} />
                     </View>
-                    <View style={{flex:2}}>                        
-                        <FireDefenderView value={this.state.defend}
-                            onAdd={this.onDefenderAdd}
-                            onChanged={this.onDefenderChanged}
-                            onIncrementsChanged={this.onDefenderIncrementsChanged}                             
-                            detailView={this.props.defenderDetail}
-                            battle={this.props.battle} />                        
+                    <View style={{flex:1, alignItems:'flex-start', justifyContent: 'flex-start'}}>
+                        <RollButton direction={'vertical'} onRoll={this.onDiceRoll} />
+                    </View>
+                    <View style={{flex:3}}>                        
+                        <CombatResolution title={'Defender'} dice={this.diceDefend} onDieChanged={this.onDieChangedDefend} />                        
                     </View>
                 </View>                
             </View>
         );
-    }
+    },
+    roll(dice,offset) {
+        dice.roll();
+        dice.dice().forEach((die,i) => this.state.dice['die'+(i+offset)] = die.value);        
+    }    
 });
 
-module.exports = FireView;
+module.exports = CombatView;

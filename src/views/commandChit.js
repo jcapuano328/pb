@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, Image } from 'react-native';
 import {Style} from 'react-native-nub';
-import Icons from '../../res';
+import Icons from '../res';
 
-var ManeuverUnit = React.createClass({
+var CommandChit = React.createClass({
     getInitialState() {
         return {
             x: 0,
@@ -33,7 +33,7 @@ var ManeuverUnit = React.createClass({
                 height: Style.Scaling.scale(height),
                 margin: 3
             }} onLayout={this.onLayout}>
-                <Image source={Icons[this.props.item.image]} resizeMode={'stretch'} style={{
+                <Image source={Icons['chit-'+this.props.chit.chitcolor]} resizeMode={'stretch'} style={{
                     flex: 1,
                     justifyContent: 'center',
                     alignItems: 'center',
@@ -41,15 +41,15 @@ var ManeuverUnit = React.createClass({
                     height: null,
                     backgroundColor: 'transparent'
                 }}>
-                    {this.props.item.number
-                    ? <Image source={Icons[this.props.item.number.toString()]} resizeMode={'stretch'} 
-                            style={{width: (width*0.75), height: (height*0.75)}} />
-                    : null                       
-                    }
+                    <Image source={Icons['label-'+this.props.chit.color]} resizeMode={'stretch'} 
+                            style={{width: (width*0.75), height: (height*0.75)}}>
+                        <Image source={Icons['label-'+this.props.chit.code]} resizeMode={'stretch'} 
+                            style={{width: (width*0.65), height: (height*0.65)}} />
+                    </Image>
                 </Image>
             </TouchableOpacity>
         );
     }
 });
 
-module.exports = ManeuverUnit;
+module.exports = CommandChit;

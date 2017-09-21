@@ -1,0 +1,3 @@
+Font: Cooper Black
+Size: 96
+Bottom/Right: 1.48
