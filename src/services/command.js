@@ -11,26 +11,26 @@ module.exports = {
     reset() {
         return [];
     },
-    add(image, cup) {        
-        var items = cup.filter((i) => i.image == image) || [];
-        cup = [
-            {image: image},
-            ...cup
+    add(chit, cup) {        
+        var items = cup.filter((i) => i.code == chit.code) || [];
+        cup = [            
+            ...cup,
+            {...chit}
         ];
                
         return shuffle(cup);        
     },
-    remove(item, cup) {
-        var idx = cup.findIndex((i) => i == item);
+    remove(chit, cup) {
+        var idx = cup.findIndex((i) => i == chit);
         if (idx > -1) {
             cup.splice(idx,1);            
         } 
         return shuffle(cup)        
     },
     draw(cup) {
-        var item = shuffle(cup).shift();
+        var chit = shuffle(cup).shift();
         return {
-            mu: item,
+            mu: chit,
             cup: cup
         };
     }

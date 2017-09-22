@@ -32,14 +32,28 @@ var CombatView = React.createClass({
         {num: 1, low: 1, high: 6, diecolor: 'white', dotcolor:'black'}
     ]),
     modifiersAttack: [
-        {name: 'flank', value: 1},
-        {name: 'flank', value: 1},
+        {name: 'Woods', value: -1},
+        {name: 'Hills', value: -1},
+        {name: 'River', value: -1},
+        {name: 'Buildings', value: -1},
+        {name: 'Flank', value: 1},
+        {name: 'Cav vs Fresh Inf', value: -1},
+        {name: 'Cav vs Spent Inf', value: 1}
     ],
     diceDefend: new Dice.Dice([
         {num: 1, low: 1, high: 6, diecolor: 'blue', dotcolor:'white'},
         {num: 1, low: 1, high: 6, diecolor: 'blue', dotcolor:'white'},
         {num: 1, low: 1, high: 6, diecolor: 'blue', dotcolor:'white'}
     ]),
+    modifiersDefend: [
+        {name: 'Woods', value: -1},
+        {name: 'Hills', value: -1},
+        {name: 'River', value: 1},
+        {name: 'Buildings', value: -1},
+        {name: 'Flank', value: -1},
+        {name: 'Cav vs Fresh Inf', value: -1},
+        {name: 'Cav vs Spent Inf', value: 1}
+    ],    
     getInitialState() {
         return {
             die1: 1,
@@ -53,7 +67,7 @@ var CombatView = React.createClass({
         };
     },
     onDieChangedAttack(d,v) {
-        this.state['die'+d] = v;
+        this.diceAttack.die(d,v);
         this.onResolve();
     },
     onModChangedAttack(m) {
@@ -61,7 +75,7 @@ var CombatView = React.createClass({
         this.onResolve();
     },
     onDieChangedDefend(d,v) {
-        this.state['die'+(d+3)] = v;
+        this.diceDefend.die(d,v);        
         this.onResolve();
     },
     onModChangedDefend(m) {
@@ -69,12 +83,24 @@ var CombatView = React.createClass({
         this.onResolve();
     },
     onDiceRoll() {
-        this.roll(this.diceAttack, 0);
-        this.roll(this.diceDefend, 3);
+        //this.roll(this.diceAttack, 0);
+        //this.roll(this.diceDefend, 3);
+        this.diceAttack.roll();
+        this.diceDefend.roll();
         
         this.onResolve();
     },
     onResolve() {
+        this.state.die1 = this.diceAttack.die(0);
+        this.state.die2 = this.diceAttack.die(1);
+        this.state.die3 = this.diceAttack.die(2);
+        this.state.die4 = this.diceDefend.die(0);
+        this.state.die5 = this.diceDefend.die(1);
+        this.state.die6 = this.diceDefend.die(2);
+        
+        applyModifiers(this.state.attackmods, this.modifiersAttack, ['die1','die2','die3']);
+        applyModifiers(this.state.defendmods, this.modifiersDefend, ['die4','die5','die6']);
+
         this.setState(this.state);
     },
     render() {
@@ -97,7 +123,15 @@ var CombatView = React.createClass({
     roll(dice,offset) {
         dice.roll();
         dice.dice().forEach((die,i) => this.state.dice['die'+(i+offset)] = die.value);        
-    }    
+    },
+    applyModifiers(mods, modifiers, dice) {
+        mods.filter((m) => m.selected).forEach((m) => {
+            var mv = modifiers.find((mod) => mod.name == m.name);
+            if (mv) {
+                dice.forEach((d) => this.state[d] += mv.value);
+            }
+        });
+    }
 });
 
 module.exports = CombatView;

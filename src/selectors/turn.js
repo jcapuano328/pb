@@ -17,6 +17,6 @@ export default createSelector(
 		d.add(o, 'minutes');
         return d.format("MMM DD, YYYY HH:mm");
         */
-        return turn.toString();
+        return 'Turn ' + turn.toString();
     }    
 );

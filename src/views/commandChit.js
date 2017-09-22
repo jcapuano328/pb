@@ -41,10 +41,10 @@ var CommandChit = React.createClass({
                     height: null,
                     backgroundColor: 'transparent'
                 }}>
-                    <Image source={Icons['label-'+this.props.chit.color]} resizeMode={'stretch'} 
-                            style={{width: (width*0.75), height: (height*0.75)}}>
+                    <Image source={Icons['label-'+this.props.chit.labelcolor]} resizeMode={'stretch'} 
+                            style={{width: width, height: height}}>
                         <Image source={Icons['label-'+this.props.chit.code]} resizeMode={'stretch'} 
-                            style={{width: (width*0.65), height: (height*0.65)}} />
+                            style={{width: width, height: height}}/>
                     </Image>
                 </Image>
             </TouchableOpacity>

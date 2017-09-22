@@ -1,7 +1,7 @@
 import HomeView from './homeView';
 import AboutView from './aboutView';
 import GameView from './gameView';
-import NavDrawer from './nav/navDrawer';
+import NavDrawer from './navDrawer';
 
 
 export {

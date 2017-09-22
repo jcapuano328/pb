@@ -1,6 +1,5 @@
 import types from '../constants/actionTypes';
 import {toast} from './toast';
-import Phases from '../services/phases';
 import Command from '../services/command';
 import getGame from '../selectors/game';
 

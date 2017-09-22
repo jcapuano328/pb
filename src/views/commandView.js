@@ -12,6 +12,7 @@ var CommandView = React.createClass({
     },
     onAdd(chit) {
         return (e) => {
+            console.log('onAdd', chit);
             this.props.addChitToCup(chit);
         }
     },
@@ -23,7 +24,7 @@ var CommandView = React.createClass({
     onDraw() {        
         this.props.drawChitFromCup();//true);        
     },
-    render() {                  
+    render() {                     
         let chit = this.props.chit || {};        
         return (
             <View style={{flex: 1}}>
@@ -32,7 +33,7 @@ var CommandView = React.createClass({
                     <View style={{flex:2}}>
                         <Text style={{fontSize: Style.Font.medium(),fontWeight: 'bold',backgroundColor: 'silver', textAlign: 'center'}}>Current</Text>                        
                         <View style={{flex:1, justifyContent: 'center', alignItems:'center'}}>
-                            <CommandChit item={chit} size={88} />
+                            <CommandChit chit={chit} size={88} />
                         </View>
                     </View>   
                 </View>
@@ -47,7 +48,7 @@ var CommandView = React.createClass({
                                 scrollEventThrottle={200}>
                                 {this.props.game.command.map((c,i) => 
                                     <View key={i} style={{paddingBottom: 5, justifyContent: 'center'}}>
-                                        <CommandChit item={c} size={64} onPress={this.onAdd(c)} />
+                                        <CommandChit chit={c} size={64} onPress={this.onAdd(c)} />
                                     </View>
                                 )}
                             </ScrollView>                        

@@ -7,8 +7,8 @@ import getGame from '../selectors/game';
 
 var HomeView = React.createClass({
     componentDidUpdate() {
-        if (this.props.battle && this.props.battle.title) {
-            Actions.battle({title: this.props.battle.title, subtitle: this.props.battle.subtitle});
+        if (this.props.game && this.props.game.title) {
+            Actions.game({title: this.props.game.title, subtitle: this.props.game.subtitle});
         }
     },
     render() {        
@@ -19,7 +19,7 @@ var HomeView = React.createClass({
 });
 
 const mapStateToProps = (state) => ({
-    battle: getGame(state)
+    game: getGame(state)
 });
 
 module.exports = connect(
