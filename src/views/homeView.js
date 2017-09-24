@@ -7,6 +7,7 @@ import getGame from '../selectors/game';
 
 var HomeView = React.createClass({
     componentDidUpdate() {
+        console.log('>>>>>HomeView', this.props.game);
         if (this.props.game && this.props.game.title) {
             Actions.game({title: this.props.game.title, subtitle: this.props.game.subtitle});
         }

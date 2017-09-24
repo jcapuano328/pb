@@ -12,7 +12,6 @@ var CommandView = React.createClass({
     },
     onAdd(chit) {
         return (e) => {
-            console.log('onAdd', chit);
             this.props.addChitToCup(chit);
         }
     },
@@ -43,12 +42,13 @@ var CommandView = React.createClass({
                     <View style={{flex:1, flexDirection: 'row'}}>                    
                         {/*left*/}
                         <View style={{flex:1}}>                        
-                            <ScrollView contentContainerStyle={{flex:1, justifyContent:'flex-start', alignItems:'center'}}
+                            {/*contentContainerStyle={{flex:1, justifyContent:'flex-start', alignItems:'center'}}*/}
+                            <ScrollView 
                                 automaticallyAdjustContentInsets={false}
                                 scrollEventThrottle={200}>
                                 {this.props.game.command.map((c,i) => 
                                     <View key={i} style={{paddingBottom: 5, justifyContent: 'center'}}>
-                                        <CommandChit chit={c} size={64} onPress={this.onAdd(c)} />
+                                        <CommandChit chit={c} size={64} onPress={this.onAdd(c)} />                                        
                                     </View>
                                 )}
                             </ScrollView>                        

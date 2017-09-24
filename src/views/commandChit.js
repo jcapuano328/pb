@@ -27,26 +27,21 @@ var CommandChit = React.createClass({
     render() {
         let width = this.props.size || 64;//(this.state.width*0.9) || 32;
         let height = this.props.size || 64;//(this.state.height*0.9) || 32;
+        let image = 'chit-'+this.props.chit.chitcolor+'-'+this.props.chit.labelcolor+'-'+(this.props.chit.code||'').toLowerCase();        
         return (
             <TouchableOpacity onPress={this.props.onPress} style={{                
                 width: Style.Scaling.scale(width), 
                 height: Style.Scaling.scale(height),
                 margin: 3
             }} onLayout={this.onLayout}>
-                <Image source={Icons['chit-'+this.props.chit.chitcolor]} resizeMode={'stretch'} style={{
+                <Image source={Icons[image]} resizeMode={'stretch'} style={{
                     flex: 1,
                     justifyContent: 'center',
                     alignItems: 'center',
                     width: null,
                     height: null,
                     backgroundColor: 'transparent'
-                }}>
-                    <Image source={Icons['label-'+this.props.chit.labelcolor]} resizeMode={'stretch'} 
-                            style={{width: width, height: height}}>
-                        <Image source={Icons['label-'+this.props.chit.code]} resizeMode={'stretch'} 
-                            style={{width: width, height: height}}/>
-                    </Image>
-                </Image>
+                }}/>
             </TouchableOpacity>
         );
     }

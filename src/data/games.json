@@ -1,16 +1,17 @@
 [
 	{
 	    "id": 1,
-	    "name": "Marengo",	    
+		"title": "Marengo",
+		"subtitle": "June 14, 1800",
 		"image": "marengo",
-		"start": {"year": 1800, "month": 6, "day": 14, "hour": 8, "minute": 30},		
-		"turns": 8,
+		"start": {"turn": 0, "year": 1800, "month": 6, "day": 14, "hour": 9, "minute": 0},		
+		"end": {"turns": 8},
 		"command": [
 			{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "M", "name": "Melas", "rating": 3},
 			{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "L", "name": "Ott", "rating": 3},
 			{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "R", "name": "O'Reilly", "rating": 3},			
 			{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "B", "name": "Napoleon", "rating": 5},
-			{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "C", "name": "Murat", "rating": 4},
+			{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "whitered", "code": "M", "name": "Murat", "rating": 4},
 			{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "L", "name": "Lanne", "rating": 4},
 			{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "V", "name": "Victor", "rating": 4},
 			{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "D", "name": "Desaix", "rating": 4}

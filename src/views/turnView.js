@@ -1,8 +1,7 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import { connect } from 'react-redux';
 import {Style,SpinSelect} from 'react-native-nub';
-import TurnCommandView from './turnCommandView';
 import Icons from '../res';
 import {prevTurn,nextTurn} from '../actions/current';
 import getGame from '../selectors/game';
@@ -46,11 +45,12 @@ var TurnView = React.createClass({
                 <View style={{flex: 1, justifyContent:'center', marginRight: 2}} onLayout={this.onLayout}>
                     <Image style={{width: iconwidth,height: iconheight,resizeMode: 'contain'}} source={Icons[this.props.game.image]}/>
                 </View>
-                <View style={{flex: 4}}>
-                    <SpinSelect value={this.props.turn} onPrev={this.onPrevTurn} onNext={this.onNextTurn} />                    
-                </View>
-                <View style={{flex: 1, marginLeft: 2}}>
-                    <TurnCommandView />
+                <View style={{flex: 5}}>
+                    <View style={{flex:1}} />
+                    <View style={{flex:2}}>
+                        <SpinSelect value={this.props.turn} onPrev={this.onPrevTurn} onNext={this.onNextTurn} />                    
+                    </View>
+                    <View style={{flex:1}} />
                 </View>
             </View>
         );

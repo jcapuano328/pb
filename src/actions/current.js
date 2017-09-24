@@ -10,7 +10,7 @@ export const reset = (e) => (dispatch,getState) => {
 
     let data = {
         game: e.id,
-        turn: 1,
+        turn: game.start.turn,
         command: {
             cup: [],
             chit: null
@@ -25,7 +25,7 @@ export const prevTurn = () => (dispatch) => {
 }
 export const nextTurn = () => (dispatch,getState) => {    
     const game = getGame(getState());
-    dispatch({type: types.NEXT_TURN, value: game.turns});
+    dispatch({type: types.NEXT_TURN, value: game.end.turns});
 }
 
 export const resetCommandCup = () => (dispatch) => {        
