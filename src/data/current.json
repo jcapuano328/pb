@@ -3,6 +3,7 @@
     "turn": "int",
     "command": {
         "cup": "array",
-        "chit": "object"
+        "chits": "array",
+        "delay": "object"
     }
 }

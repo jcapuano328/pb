@@ -4,9 +4,10 @@ import types from '../constants/actionTypes';
 const defaultState = {
     game: -1,
     turn: 1,
-    command: {
-        chit: null,
-        cup: []
+    command: {        
+        cup: [],
+        delay: null,
+        chits: []
     }
 };
 
@@ -39,20 +40,51 @@ module.exports = (state = defaultState, action) => {
         return {
             ...state,
             command: {
-                ...state.cup,
+                ...state.command,
                 cup: [...action.value]
             }            
         };
 
-    case types.SET_CHIT:
+    case types.SET_DELAY:
         return {
             ...state,
             command: {
                 ...state.command,
-                chit: {...action.value}
+                delay: {...action.value}
             }            
         };
 
+
+    case types.SET_CHITS:
+        return {
+            ...state,
+            command: {
+                ...state.command,
+                chits: [...action.value]
+            }            
+        };
+        
+    case types.ADD_CHIT:
+        return {
+            ...state,
+            command: {
+                ...state.command,
+                chits: [
+                    {...action.value},
+                    ...state.command.chits
+                ]
+            }            
+        };
+
+    case types.REMOVE_CHIT:
+        return {
+            ...state,
+            command: {
+                ...state.command,
+                chits: state.command.chits.filter((c) => c.side !== action.value.side || c.code !== action.value.code)
+            }            
+        };
+        
     case types.PREV_TURN:        
         return {
             ...state,

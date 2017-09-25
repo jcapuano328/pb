@@ -2,7 +2,10 @@ module.exports = {
     TOAST: 'TOAST',
     SET_CURRENT: 'SET_CURRENT',
     SET_CUP: 'SET_CUP',
-    SET_CHIT: 'SET_CHIT',
+    SET_DELAY: 'SET_DELAY',
+    SET_CHITS: 'SET_CHITS',
+    ADD_CHIT: 'ADD_CHIT',
+    REMOVE_CHIT: 'REMOVE_CHIT',
     PREV_TURN: 'PREV_TURN',
     NEXT_TURN: 'NEXT_TURN'
 };

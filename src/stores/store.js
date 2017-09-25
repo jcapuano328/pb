@@ -15,8 +15,9 @@ import rootReducer from '../reducers';
             game: int,
             turn: int,
 			command: {
-				cup: [],
-				chit: {}
+                cup: [],
+                current: [],
+				delay: {}
 			}
         }
     }

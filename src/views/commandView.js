@@ -2,11 +2,21 @@ import React from 'react';
 import { View, ScrollView, Text, Image } from 'react-native';
 import { connect } from 'react-redux';
 import {Style,IconButton} from 'react-native-nub';
+import {DiceRoll} from 'react-native-dice';
+//import {Dice,DiceTray,RollButton} from 'react-native-dice';
 import Icons from '../res';
 import CommandChit from './commandChit';
-import {resetChitCup,addChitToCup,removeChitFromCup,drawChitFromCup} from '../actions/current';
+import {resetChitCup,addChitToCup,removeChitFromCup,drawChitFromCup,addChitToCurrent,removeChitFromCurrent,delayCurrentChit,returnDelayedChitToCup} from '../actions/current';
 
 var CommandView = React.createClass({
+    dice: /*new Dice(*/[
+        {num: 1, low: 1, high: 6, diecolor: 'red', dotcolor:'white'}
+    ],//),    
+    getInitialState() {
+        return {
+            die: 1
+        };
+    },
     onReset() {
         this.props.resetChitCup();        
     },
@@ -15,29 +25,81 @@ var CommandView = React.createClass({
             this.props.addChitToCup(chit);
         }
     },
-    onRemove(chit) {
+    onDelay() {
+        this.props.delayCurrentChit();
+    },    
+    onReturn() {
+        this.props.returnDelayedChitToCup();
+    },
+    onComplete(chit) {
         return (e) => {        
+            this.props.removeChitFromCurrent(chit);
+        }
+    },
+    onJump(chit) {
+        return (e) => {                    
+            this.props.addChitToCurrent(chit);
             this.props.removeChitFromCup(chit);
         }
     },    
     onDraw() {        
         this.props.drawChitFromCup();//true);        
+        this.props.returnDelayedChitToCup();
     },
+    onDiceRoll(d) {
+        //this.dice.roll();
+        //this.state.die = this.dice.die(0);
+        this.state.die = d[0].value;
+        this.setState(this.state);
+    },    
     render() {                     
-        let chit = this.props.chit || {};        
         return (
             <View style={{flex: 1}}>
                 {/*top*/}
                 <View style={{flex:2, flexDirection: 'row'}}>
                     <View style={{flex:2}}>
-                        <Text style={{fontSize: Style.Font.medium(),fontWeight: 'bold',backgroundColor: 'silver', textAlign: 'center'}}>Current</Text>                        
-                        <View style={{flex:1, justifyContent: 'center', alignItems:'center'}}>
-                            <CommandChit chit={chit} size={88} />
+                        <Text style={{fontSize: Style.Font.medium(),fontWeight: 'bold',backgroundColor: 'silver', textAlign: 'center'}}>Current</Text>
+                        <View style={{flex:1, flexDirection:'row'}}>
+                            {/*current*/}
+                            <View style={{flex:3, flexDirection: 'row', backgroundColor:'blue'}}>                        
+                                {this.props.current.map((c,i) => 
+                                    <View key={i} style={{alignItems: 'center', justifyContent: 'center'}}>
+                                        <CommandChit chit={c} size={48} onPress={this.onComplete(c)} />
+                                    </View>
+                                )}
+                            </View>    
+                            {/*delay*/}                            
+                            <View style={{flex:1, flexDirection:'row', justifyContent: 'center', alignItems: 'center', backgroundColor:'green'}}>
+                                <View style={{flex: 1, justifyContent: 'center', alignItems:'center'}}>
+                                    <IconButton image={Icons.delay} height={64} width={64} resizeMode='stretch' onPress={this.onDelay} />
+                                </View>
+                                <View style={{flex:1, justifyContent: 'center', alignItems:'center'}}>                            
+                                    {this.props.delay 
+                                    ? <CommandChit chit={this.props.delay} size={32} onPress={this.onReturn} />
+                                    : <View />
+                                    }                                
+                                </View>   
+                            </View>                                                        
+                            {/*dice*/}
+                            <View style={{flex:1, backgroundColor:'yellow'}}>
+                                <View style={{flex:1}} />
+                                <View style={{flex:2}}>
+                                <DiceRoll dice={this.dice} values={[this.state.die]} onRoll={this.onDiceRoll} />
+                                </View>
+                                <View style={{flex:1}} />
+                                {/*<View style={{flex: 1}}>
+                                    <DiceTray size={Style.Scaling.scale(32)} dice={this.dice} values={[this.state.die]} />
+                                </View>     
+                                <View style={{flex:1, alignItems:'flex-start', justifyContent: 'flex-start'}}>
+                                    <RollButton direction={'vertical'} onRoll={this.onDiceRoll} />
+                                </View>
+                                */}
+                            </View>
                         </View>
                     </View>   
                 </View>
                 {/*bottom*/}
-                <View style={{flex:6}}>
+                <View style={{flex:8}}>
                     <Text style={{fontSize: Style.Font.medium(),fontWeight: 'bold',backgroundColor: 'silver', textAlign: 'center'}}>Available</Text>
                     <View style={{flex:1, flexDirection: 'row'}}>                    
                         {/*left*/}
@@ -72,14 +134,14 @@ var CommandView = React.createClass({
                             }}>                        
                                 <View style={{flex:1, flexDirection:'row', flexWrap: 'wrap', 
                                         justifyContent:'space-around', alignItems:'flex-start', 
-                                        marginTop: Style.Scaling.scale(70), 
+                                        marginTop: Style.Scaling.scale(90), 
                                         marginBottom: Style.Scaling.scale(30), 
                                         marginLeft: Style.Scaling.scale(30), 
                                         marginRight: Style.Scaling.scale(30)
                                     }}
                                 >                            
                                     {this.props.cup.map((c,i) => 
-                                        <CommandChit key={i} chit={c} size={32} onPress={this.onRemove(c)} />
+                                        <CommandChit key={i} chit={c} size={32} onPress={this.onJump(c)} />
                                     )}
                                 </View>
                             </Image>                        
@@ -93,10 +155,20 @@ var CommandView = React.createClass({
 
 const mapStateToProps = (state) => ({    
     cup: state.current.command.cup || [],
-    chit: state.current.command.chit
+    current: state.current.command.chits || [],
+    delay: state.current.command.delay
 });
 
-const mapDispatchToProps =  ({resetChitCup,addChitToCup,removeChitFromCup,drawChitFromCup});
+const mapDispatchToProps =  ({
+    resetChitCup,
+    addChitToCup,
+    removeChitFromCup,
+    drawChitFromCup,
+    addChitToCurrent,
+    removeChitFromCurrent,
+    delayCurrentChit,
+    returnDelayedChitToCup
+});
 
 module.exports = connect(
   mapStateToProps,

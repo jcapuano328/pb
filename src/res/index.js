@@ -11,6 +11,7 @@ module.exports = {
 	"draw": require('./draw-from-cup.png'),
 	"drawcup": require('./drawcup.png'),
 	"resetcup": require('./reset-draw-cup.png'),
+	"delay": require('./hourglass.png'),
 
 	"chit-blue-gray-a": require('./chit-blue-gray-a.png'),
 	"chit-blue-gray-b": require('./chit-blue-gray-b.png'),
