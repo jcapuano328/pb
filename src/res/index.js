@@ -1,8 +1,8 @@
 import { Icons } from 'react-native-nub';
 
 module.exports = {
-	"logo": require('./logo.jpg'),
-	"splash": require('./logo.jpg'),
+	"logo": require('./logo.png'),
+	"splash": require('./splash.png'),
 	"menu": Icons['menu-light'],
 	"info": Icons['info-light'],
 	"refresh": Icons['refresh-light'],

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import {Landing} from 'react-native-nub';
+import {Style,Landing} from 'react-native-nub';
 import {splash} from '../res';
 import getGame from '../selectors/game';            
 
@@ -13,7 +13,7 @@ var HomeView = React.createClass({
     },
     render() {        
         return (
-            <Landing splash={splash} />
+            <Landing splash={splash} top={Style.Scaling.scale(44)} />
         );
     }
 });

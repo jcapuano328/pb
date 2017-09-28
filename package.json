@@ -5,8 +5,8 @@
 	"scripts": {
 		"start": "node node_modules/react-native/local-cli/cli.js start",
 		"debug": "node node_modules/react-native/local-cli/cli.js run-android",
-		"build-rel": "cd android && gradlew assembleRelease && cd ..",
-		"build-stg": "cd android && gradlew assembleReleaseStaging && cd ..",
+		"build-rel": "cd android && gradlew assembleRelease --console plain && cd ..",
+		"build-stg": "cd android && gradlew assembleReleaseStaging  --console plain && cd ..",
 		"build-dbg": "cd android && gradlew assembleDebug && cd ..",    
 		"install-dbg": "adb -d install -r android/app/build/outputs/apk/pb-debug-1.0.apk",
 		"install-stg": "adb -d install -r android/app/build/outputs/apk/pb-releaseStaging-1.0.apk",    

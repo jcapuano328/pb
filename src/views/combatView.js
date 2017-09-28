@@ -9,24 +9,31 @@ var CombatResolution = React.createClass({
         return (
             <View style={{flex: 1}}>                
                 <Text style={{fontSize: Style.Font.medium(),fontWeight: 'bold',backgroundColor: 'silver', textAlign: 'center'}}>{this.props.title}</Text>
-                <View style={{flex: 1}}>
-                    <DiceTray size={Style.Scaling.scale(64)} dice={this.props.dice} values={this.props.dice.map((d) => d.value)} onDie={this.props.onDieChanged}/>
+                <View style={{flex: 2}}>
+                    <View style={{flex: 2, paddingTop: 30}}>
+                        <DiceTray size={Style.Scaling.scale(48)} perrow={3}
+                            dice={this.props.dice} values={this.props.dice.map((d) => d.value())}
+                            onDie={this.props.onDieChanged}/>
+                    </View>
+                    <View style={{flex: 1}}>
+                        <Text style={{alignSelf:'center'}}>{this.hits()}</Text>
+                    </View>
                 </View>
-                <View style={{flex: 1}}>
-                    <Text>Tally number of hits</Text>
-                </View>
-                <View style={{flex: 1}}>
+                <View style={{flex: 3}}>
                     <MultiSelectList title={'Modifiers'}
                                     items={this.props.modifiers.map((m) => ({name: m.name, selected: this.props.mods[m.name]}))}
                                     onChanged={this.props.onModChanged}/>
                 </View>
             </View>
         );
+    },
+    hits() {
+        return this.props.values.reduce((a,v) => a + (v >= 4 ? 1 : 0), 0) + ' hits';
     }
 });
 
 var CombatView = React.createClass({
-    diceAttack: new Dice.Dice([
+    diceAttack: new Dice([
         {num: 1, low: 1, high: 6, diecolor: 'white', dotcolor:'black'},
         {num: 1, low: 1, high: 6, diecolor: 'white', dotcolor:'black'},
         {num: 1, low: 1, high: 6, diecolor: 'white', dotcolor:'black'}
@@ -40,7 +47,7 @@ var CombatView = React.createClass({
         {name: 'Cav vs Fresh Inf', value: -1},
         {name: 'Cav vs Spent Inf', value: 1}
     ],
-    diceDefend: new Dice.Dice([
+    diceDefend: new Dice([
         {num: 1, low: 1, high: 6, diecolor: 'blue', dotcolor:'white'},
         {num: 1, low: 1, high: 6, diecolor: 'blue', dotcolor:'white'},
         {num: 1, low: 1, high: 6, diecolor: 'blue', dotcolor:'white'}
@@ -87,36 +94,54 @@ var CombatView = React.createClass({
         //this.roll(this.diceDefend, 3);
         this.diceAttack.roll();
         this.diceDefend.roll();
-        
+
         this.onResolve();
     },
     onResolve() {
-        this.state.die1 = this.diceAttack.die(0);
-        this.state.die2 = this.diceAttack.die(1);
-        this.state.die3 = this.diceAttack.die(2);
-        this.state.die4 = this.diceDefend.die(0);
-        this.state.die5 = this.diceDefend.die(1);
-        this.state.die6 = this.diceDefend.die(2);
+        this.state.die1 = this.diceAttack.die(1);
+        this.state.die2 = this.diceAttack.die(2);
+        this.state.die3 = this.diceAttack.die(3);
+        this.state.die4 = this.diceDefend.die(1);
+        this.state.die5 = this.diceDefend.die(2);
+        this.state.die6 = this.diceDefend.die(3);        
         
-        applyModifiers(this.state.attackmods, this.modifiersAttack, ['die1','die2','die3']);
-        applyModifiers(this.state.defendmods, this.modifiersDefend, ['die4','die5','die6']);
+        this.applyModifiers(this.state.attackmods, this.modifiersAttack, ['die1','die2','die3']);
+        this.applyModifiers(this.state.defendmods, this.modifiersDefend, ['die4','die5','die6']);
 
         this.setState(this.state);
     },
     render() {
         return (
             <View style={{flex: 1}}>                
-                <View style={{flex:1, flexDirection:'row'}}>
+                <View style={{flex:3, flexDirection:'row'}}>
+                    {/*left*/}
                     <View style={{flex:3}}>
-                        <CombatResolution title={'Attacker'} dice={this.diceAttack} onDieChanged={this.onDieChangedAttack} />
+                        <CombatResolution title={'Attacker'} 
+                            dice={this.diceAttack} values={[this.state.die1,this.state.die2,this.state.die3]} 
+                            onDieChanged={this.onDieChangedAttack} 
+                            modifiers={this.modifiersAttack} mods={this.state.attackmods} 
+                            onModChanged={this.onModChangedAttack} />
                     </View>
-                    <View style={{flex:1, alignItems:'flex-start', justifyContent: 'flex-start'}}>
-                        <RollButton direction={'vertical'} onRoll={this.onDiceRoll} />
+
+                    {/*middle*/}
+                    <View style={{flex:1}}>
+                        <View style={{flex:1}} />
+                        <View style={{flex:2}}>
+                        <RollButton direction={'horizontal'} onRoll={this.onDiceRoll} />
+                        </View>
+                        <View style={{flex:6}} />
                     </View>
-                    <View style={{flex:3}}>                        
-                        <CombatResolution title={'Defender'} dice={this.diceDefend} onDieChanged={this.onDieChangedDefend} />                        
+                    
+                    {/*right*/}
+                    <View style={{flex:3}}>
+                        <CombatResolution title={'Defender'} 
+                        dice={this.diceDefend} values={[this.state.die4,this.state.die5,this.state.die6]} 
+                        onDieChanged={this.onDieChangedDefend} 
+                        modifiers={this.modifiersDefend} mods={this.state.defendmods} 
+                        onModChanged={this.onModChangedDefend} />                        
                     </View>
-                </View>                
+                </View>
+                <View style={{flex:2}} />
             </View>
         );
     },
@@ -125,10 +150,15 @@ var CombatView = React.createClass({
         dice.dice().forEach((die,i) => this.state.dice['die'+(i+offset)] = die.value);        
     },
     applyModifiers(mods, modifiers, dice) {
-        mods.filter((m) => m.selected).forEach((m) => {
-            var mv = modifiers.find((mod) => mod.name == m.name);
+        Object.keys(mods).filter((m) => mods[m]).forEach((m) => {
+            var mv = modifiers.find((mod) => mod.name == m);
             if (mv) {
-                dice.forEach((d) => this.state[d] += mv.value);
+                dice.forEach((d) => {
+                    var v = this.state[d] + mv.value;
+                    if (v < 0) {v = 0;}
+                    if (v > 6) {v = 6;}                        
+                    this.state[d] = v;
+                });
             }
         });
     }

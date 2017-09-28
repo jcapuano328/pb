@@ -10,7 +10,7 @@ import {resetChitCup,addChitToCup,removeChitFromCup,drawChitFromCup,addChitToCur
 
 var CommandView = React.createClass({
     dice: /*new Dice(*/[
-        {num: 1, low: 1, high: 6, diecolor: 'red', dotcolor:'white'}
+        {num: 1, low: 1, high: 6, diecolor: 'green', dotcolor:'white'}
     ],//),    
     getInitialState() {
         return {
@@ -61,7 +61,7 @@ var CommandView = React.createClass({
                         <Text style={{fontSize: Style.Font.medium(),fontWeight: 'bold',backgroundColor: 'silver', textAlign: 'center'}}>Current</Text>
                         <View style={{flex:1, flexDirection:'row'}}>
                             {/*current*/}
-                            <View style={{flex:3, flexDirection: 'row', backgroundColor:'blue'}}>                        
+                            <View style={{flex:3, flexDirection: 'row'}}>
                                 {this.props.current.map((c,i) => 
                                     <View key={i} style={{alignItems: 'center', justifyContent: 'center'}}>
                                         <CommandChit chit={c} size={48} onPress={this.onComplete(c)} />
@@ -69,7 +69,7 @@ var CommandView = React.createClass({
                                 )}
                             </View>    
                             {/*delay*/}                            
-                            <View style={{flex:1, flexDirection:'row', justifyContent: 'center', alignItems: 'center', backgroundColor:'green'}}>
+                            <View style={{flex:1, flexDirection:'row', justifyContent: 'center', alignItems: 'center'}}>
                                 <View style={{flex: 1, justifyContent: 'center', alignItems:'center'}}>
                                     <IconButton image={Icons.delay} height={64} width={64} resizeMode='stretch' onPress={this.onDelay} />
                                 </View>
@@ -81,7 +81,7 @@ var CommandView = React.createClass({
                                 </View>   
                             </View>                                                        
                             {/*dice*/}
-                            <View style={{flex:1, backgroundColor:'yellow'}}>
+                            <View style={{flex:1}}>
                                 <View style={{flex:1}} />
                                 <View style={{flex:2}}>
                                 <DiceRoll dice={this.dice} values={[this.state.die]} onRoll={this.onDiceRoll} />

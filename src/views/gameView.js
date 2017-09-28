@@ -5,6 +5,7 @@ import ScrollableTabView from 'react-native-scrollable-tab-view';
 import {Style} from 'react-native-nub';
 import TurnView from './turnView';
 import CommandView from './commandView';
+import CombatView from './combatView';
 import getGame from '../selectors/game';
 
 var GameView = React.createClass({
@@ -23,7 +24,7 @@ var GameView = React.createClass({
                     initialPage={this.state.initialPage}                    
                 >
                     <CommandView tabLabel="Command" game={this.props.game} />
-                    <View tabLabel="Combat" game={this.props.game}/>
+                    <CombatView tabLabel="Combat" game={this.props.game}/>
                 </ScrollableTabView>
             </View>
         );
