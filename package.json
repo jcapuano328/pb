@@ -6,6 +6,7 @@
 		"start": "node node_modules/react-native/local-cli/cli.js start",
 		"debug": "node node_modules/react-native/local-cli/cli.js run-android",
 		"build-rel": "cd android && gradlew assembleRelease --console plain && cd ..",
+		"align-rel": "%ANDROID_HOME%/build-tools/25.0.2/zipalign.exe -f -v 4 android/app/build/outputs/apk/pb-release-1.0-unaligned.apk android/app/build/outputs/apk/pb-release-1.0.apk",
 		"build-stg": "cd android && gradlew assembleReleaseStaging  --console plain && cd ..",
 		"build-dbg": "cd android && gradlew assembleDebug && cd ..",    
 		"install-dbg": "adb -d install -r android/app/build/outputs/apk/pb-debug-1.0.apk",

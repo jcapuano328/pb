@@ -2,16 +2,16 @@ import React from 'react';
 import { View, ScrollView, Text, Image } from 'react-native';
 import { connect } from 'react-redux';
 import {Style,IconButton} from 'react-native-nub';
-import {DiceRoll} from 'react-native-dice';
-//import {Dice,DiceTray,RollButton} from 'react-native-dice';
+//import {DiceRoll} from 'react-native-dice';
+import {Dice,DiceTray,RollButton} from 'react-native-dice';
 import Icons from '../res';
 import CommandChit from './commandChit';
 import {resetChitCup,addChitToCup,removeChitFromCup,drawChitFromCup,addChitToCurrent,removeChitFromCurrent,delayCurrentChit,returnDelayedChitToCup} from '../actions/current';
 
 var CommandView = React.createClass({
-    dice: /*new Dice(*/[
+    dice: new Dice([
         {num: 1, low: 1, high: 6, diecolor: 'green', dotcolor:'white'}
-    ],//),    
+    ]),    
     getInitialState() {
         return {
             die: 1
@@ -47,9 +47,9 @@ var CommandView = React.createClass({
         this.props.returnDelayedChitToCup();
     },
     onDiceRoll(d) {
-        //this.dice.roll();
-        //this.state.die = this.dice.die(0);
-        this.state.die = d[0].value;
+        this.dice.roll();
+        this.state.die = this.dice.die(1);
+        //this.state.die = d[0].value;
         this.setState(this.state);
     },    
     render() {                     
@@ -61,17 +61,17 @@ var CommandView = React.createClass({
                         <Text style={{fontSize: Style.Font.medium(),fontWeight: 'bold',backgroundColor: 'silver', textAlign: 'center'}}>Current</Text>
                         <View style={{flex:1, flexDirection:'row'}}>
                             {/*current*/}
-                            <View style={{flex:3, flexDirection: 'row'}}>
+                            <View style={{flex:5, flexDirection: 'row', justifyContent:'flex-start'}}>
                                 {this.props.current.map((c,i) => 
                                     <View key={i} style={{alignItems: 'center', justifyContent: 'center'}}>
-                                        <CommandChit chit={c} size={48} onPress={this.onComplete(c)} />
+                                        <CommandChit chit={c} size={40} onPress={this.onComplete(c)} />
                                     </View>
                                 )}
                             </View>    
                             {/*delay*/}                            
-                            <View style={{flex:1, flexDirection:'row', justifyContent: 'center', alignItems: 'center'}}>
+                            <View style={{flex:2, flexDirection:'row', justifyContent: 'center', alignItems: 'center'}}>
                                 <View style={{flex: 1, justifyContent: 'center', alignItems:'center'}}>
-                                    <IconButton image={Icons.delay} height={64} width={64} resizeMode='stretch' onPress={this.onDelay} />
+                                    <IconButton image={Icons.delay} height={56} width={56} resizeMode='stretch' onPress={this.onDelay} />
                                 </View>
                                 <View style={{flex:1, justifyContent: 'center', alignItems:'center'}}>                            
                                     {this.props.delay 
@@ -81,19 +81,24 @@ var CommandView = React.createClass({
                                 </View>   
                             </View>                                                        
                             {/*dice*/}
-                            <View style={{flex:1}}>
+                            <View style={{flex:3, flexDirection:'row'}}>
+                                {/*
                                 <View style={{flex:1}} />
-                                <View style={{flex:2}}>
+                                <View style={{flex:3}}>
                                 <DiceRoll dice={this.dice} values={[this.state.die]} onRoll={this.onDiceRoll} />
                                 </View>
                                 <View style={{flex:1}} />
-                                {/*<View style={{flex: 1}}>
-                                    <DiceTray size={Style.Scaling.scale(32)} dice={this.dice} values={[this.state.die]} />
+                                */}                                
+                                <View style={{flex: 1, paddingTop: 20}}>
+                                    <DiceTray size={Style.Scaling.scale(48)} perrow={1} dice={this.dice} values={this.dice.map((d) => d.value())} />
                                 </View>     
-                                <View style={{flex:1, alignItems:'flex-start', justifyContent: 'flex-start'}}>
-                                    <RollButton direction={'vertical'} onRoll={this.onDiceRoll} />
+                                <View style={{flex:1, paddingRight:5}}>
+                                    <View style={{flex:1}} />
+                                    <View style={{flex:4}}>
+                                    <RollButton direction={'horizontal'} onRoll={this.onDiceRoll} />
+                                    </View>
+                                    <View style={{flex:1}} />
                                 </View>
-                                */}
                             </View>
                         </View>
                     </View>   
@@ -108,7 +113,7 @@ var CommandView = React.createClass({
                             <ScrollView 
                                 automaticallyAdjustContentInsets={false}
                                 scrollEventThrottle={200}>
-                                {this.props.game.command.map((c,i) => 
+                                {this.available().map((c,i) => 
                                     <View key={i} style={{paddingBottom: 5, justifyContent: 'center'}}>
                                         <CommandChit chit={c} size={64} onPress={this.onAdd(c)} />                                        
                                     </View>
@@ -149,6 +154,16 @@ var CommandView = React.createClass({
                     </View>
                 </View>            
             </View>
+        );
+    },
+    available() {
+        // only those command chits that are not in the cup or current or delayed
+        return this.props.game.command.filter((c) => 
+            !this.props.cup.find((cc) => cc.side === c.side && cc.code === c.code)
+            &&
+            !this.props.current.find((cc) => cc.side === c.side && cc.code === c.code)
+            &&
+            (this.props.delay == null || this.props.delay.side !== c.side || this.props.delay.code !== c.code)
         );
     }
 });

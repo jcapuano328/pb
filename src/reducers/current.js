@@ -50,7 +50,7 @@ module.exports = (state = defaultState, action) => {
             ...state,
             command: {
                 ...state.command,
-                delay: {...action.value}
+                delay: action.value ? {...action.value} : null
             }            
         };
 

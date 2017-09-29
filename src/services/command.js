@@ -12,7 +12,6 @@ module.exports = {
         return [];
     },
     add(chit, cup) {        
-        var items = cup.filter((i) => i.code == chit.code) || [];
         cup = [            
             ...cup,
             {...chit}
