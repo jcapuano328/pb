@@ -7,22 +7,14 @@ import {logo} from '../res';
 const AboutView = (props) => {
     return (
         <About logo={logo}
-            title={'About La Bataille Assistant'}
+            title={'About Pub Battles Assistant'}
             version={props.version}
             releasedate={moment(props.releasedate).format("MMMM Do YYYY, h:mm:ss a")}
-            description={'A no frills assistant for the La Bataille system of wargames.'}
+            description={'A no frills assistant for the Pub Battles system of wargames.'}
             credit={{
                 description: 'All glory to them that made it possible!',
                 links: [
-                    {label: 'Marshal Enterprises', url: 'http://www.labataille.me/Home_Page.php'},
-                    {label: 'Clash of Arms', url: 'http://www.clashofarms.com/'}
-                ]
-            }}
-            additionalinfo={{
-                description: 'And of course check out the discussions and extras',
-                links: [
-                    {label: 'ConsimWorld Forum', url: 'http://talk.consimworld.com/WebX?13@@.ee6c73b/31887'},
-                    {label: 'La Bataille Extras', url: 'http://labataille.us/'}
+                    {label: 'Command Post Games', url: 'http://http://www.commandpostgames.com/'}
                 ]
             }}
             dependencies={[

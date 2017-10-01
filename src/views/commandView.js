@@ -60,51 +60,47 @@ var CommandView = React.createClass({
                     <View style={{flex:2}}>
                         <Text style={{fontSize: Style.Font.medium(),fontWeight: 'bold',backgroundColor: 'silver', textAlign: 'center'}}>Current</Text>
                         <View style={{flex:1, flexDirection:'row'}}>
-                            {/*current*/}
-                            <View style={{flex:5, flexDirection: 'row', justifyContent:'flex-start'}}>
-                                {this.props.current.map((c,i) => 
-                                    <View key={i} style={{alignItems: 'center', justifyContent: 'center'}}>
-                                        <CommandChit chit={c} size={40} onPress={this.onComplete(c)} />
-                                    </View>
-                                )}
-                            </View>    
-                            {/*delay*/}                            
-                            <View style={{flex:2, flexDirection:'row', justifyContent: 'center', alignItems: 'center'}}>
-                                <View style={{flex: 1, justifyContent: 'center', alignItems:'center'}}>
-                                    <IconButton image={Icons.delay} height={56} width={56} resizeMode='stretch' onPress={this.onDelay} />
-                                </View>
-                                <View style={{flex:1, justifyContent: 'center', alignItems:'center'}}>                            
-                                    {this.props.delay 
-                                    ? <CommandChit chit={this.props.delay} size={32} onPress={this.onReturn} />
-                                    : <View />
-                                    }                                
-                                </View>   
-                            </View>                                                        
-                            {/*dice*/}
-                            <View style={{flex:3, flexDirection:'row'}}>
-                                {/*
-                                <View style={{flex:1}} />
-                                <View style={{flex:3}}>
-                                <DiceRoll dice={this.dice} values={[this.state.die]} onRoll={this.onDiceRoll} />
-                                </View>
-                                <View style={{flex:1}} />
-                                */}                                
-                                <View style={{flex: 1, paddingTop: 20}}>
-                                    <DiceTray size={Style.Scaling.scale(48)} perrow={1} dice={this.dice} values={this.dice.map((d) => d.value())} />
-                                </View>     
-                                <View style={{flex:1, paddingRight:5}}>
-                                    <View style={{flex:1}} />
-                                    <View style={{flex:4}}>
-                                    <RollButton direction={'horizontal'} onRoll={this.onDiceRoll} />
-                                    </View>
-                                    <View style={{flex:1}} />
-                                </View>
+                            {/*left*/}
+                            <View style={{flex:6, marginRight: 5, borderRightColor: 'gray', borderRightWidth: 1}}>
+                                {/*current*/}
+                                <View style={{flex:1, flexDirection: 'row', flexWrap: 'wrap', 
+                                            justifyContent:'flex-start', alignItems:'flex-start'}}>
+                                    {this.props.current.map((c,i) => 
+                                        <View key={i} style={{alignItems: 'center', justifyContent: 'center'}}>
+                                            <CommandChit chit={c} size={40} onPress={this.onComplete(c)} />
+                                        </View>
+                                    )}
+                                </View>                                         
                             </View>
+                            {/*right*/}
+                            <View style={{flex:2}}>
+                                {/*dice*/}
+                                <View style={{flex:1, flexDirection:'row'}}>
+                                    <View style={{flex: 1/*, paddingTop: 20*/}}>
+                                        <DiceTray size={Style.Scaling.scale(48)} perrow={1} dice={this.dice} values={this.dice.map((d) => d.value())} />
+                                    </View>     
+                                    <View style={{flex:1, paddingRight:5}}>
+                                        <RollButton direction={'horizontal'} onRoll={this.onDiceRoll} />
+                                    </View>
+                                </View>
+                                {/*delay*/}                            
+                                <View style={{flex:1, flexDirection:'row', justifyContent: 'center', alignItems: 'center'}}>
+                                    <View style={{flex: 1, justifyContent: 'center', alignItems:'center'}}>
+                                        <IconButton image={Icons.delay} height={56} width={56} resizeMode='stretch' onPress={this.onDelay} />
+                                    </View>
+                                    <View style={{flex:1, justifyContent: 'center', alignItems:'center'}}>                            
+                                        {this.props.delay 
+                                        ? <CommandChit chit={this.props.delay} size={32} onPress={this.onReturn} />
+                                        : <View />
+                                        }                                
+                                    </View>   
+                                </View>                                
+                            </View>                            
                         </View>
                     </View>   
                 </View>
                 {/*bottom*/}
-                <View style={{flex:8}}>
+                <View style={{flex:6}}>
                     <Text style={{fontSize: Style.Font.medium(),fontWeight: 'bold',backgroundColor: 'silver', textAlign: 'center'}}>Available</Text>
                     <View style={{flex:1, flexDirection: 'row'}}>                    
                         {/*left*/}
@@ -115,7 +111,7 @@ var CommandView = React.createClass({
                                 scrollEventThrottle={200}>
                                 {this.available().map((c,i) => 
                                     <View key={i} style={{paddingBottom: 5, justifyContent: 'center'}}>
-                                        <CommandChit chit={c} size={64} onPress={this.onAdd(c)} />                                        
+                                        <CommandChit chit={c} size={56} onPress={this.onAdd(c)} />                                        
                                     </View>
                                 )}
                             </ScrollView>                        
@@ -123,10 +119,10 @@ var CommandView = React.createClass({
                         {/*center*/}
                         <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
                             <View style={{flex: 1, justifyContent: 'center', alignItems:'center'}}>
-                                <IconButton image={Icons.draw} height={64} width={64} resizeMode='stretch' onPress={this.onDraw} />                            
+                                <IconButton image={Icons.draw} height={80} width={80} resizeMode='stretch' onPress={this.onDraw} />                            
                             </View>
                             <View style={{flex: 1, justifyContent: 'center', alignItems:'center'}}>
-                                <IconButton image={Icons.resetcup} height={64} width={64} resizeMode='stretch' onPress={this.onReset} />                        
+                                <IconButton image={Icons.resetcup} height={80} width={80} resizeMode='stretch' onPress={this.onReset} />                        
                             </View>                        
                         </View>                        
                         {/*right*/}

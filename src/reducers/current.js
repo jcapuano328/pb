@@ -65,14 +65,19 @@ module.exports = (state = defaultState, action) => {
         };
         
     case types.ADD_CHIT:
+        let chits = [...state.command.chits];
+        if (action.value.back) {
+            chits.push({...action.value.chit});
+        } else if (action.value.jump) {
+            chits.splice(chits.length > 0 ? chits.length-1 : 0, 0, {...action.value.chit});
+        } else {
+            chits.shift({...action.value.chit});
+        }        
         return {
             ...state,
             command: {
                 ...state.command,
-                chits: [
-                    {...action.value},
-                    ...state.command.chits
-                ]
+                chits: chits
             }            
         };
 

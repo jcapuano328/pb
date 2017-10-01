@@ -48,7 +48,7 @@ export const drawChitFromCup = (all) => (dispatch,getState) => {
     const {current} = getState();
     let draw = Command.draw(current.command.cup, all);
     dispatch({type: types.SET_CUP, value: draw.cup});
-    dispatch({type: types.ADD_CHIT, value: draw.mu});
+    dispatch({type: types.ADD_CHIT, value: {chit: draw.mu, back: true}});
 }
 
 export const setChitCup = (cup) => (dispatch) => {    
@@ -60,7 +60,7 @@ export const setChit = (chit) => (dispatch) => {
 }
 
 export const addChitToCurrent = (chit) => (dispatch,getState) => {    
-    dispatch({type: types.ADD_CHIT, value: chit});    
+    dispatch({type: types.ADD_CHIT, value: {chit: chit, jump: true}});    
 }
 
 export const removeChitFromCurrent = (chit) => (dispatch,getState) => {    
@@ -69,7 +69,7 @@ export const removeChitFromCurrent = (chit) => (dispatch,getState) => {
 
 export const delayCurrentChit = () => (dispatch,getState) => {        
     const {current} = getState();
-    let chit = current.command.chits && current.command.chits.length > 0 ? current.command.chits[0] : null;
+    let chit = current.command.chits && current.command.chits.length > 0 ? current.command.chits[current.command.chits.length-1] : null;
     if (chit) {
         dispatch({type: types.SET_DELAY, value: chit});
         dispatch({type: types.REMOVE_CHIT, value: chit});    
