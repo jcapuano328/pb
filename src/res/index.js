@@ -13,6 +13,18 @@ module.exports = {
 	"resetcup": require('./reset-draw-cup.png'),
 	"delay": require('./hourglass.png'),
 
+
+	"chit-blue-blue-ar": require('./chit-blue-blue-ar.png'),
+	"chit-blue-blue-c": require('./chit-blue-blue-c.png'),
+	"chit-blue-blue-i": require('./chit-blue-blue-i.png'),
+	"chit-blue-blue-ii": require('./chit-blue-blue-ii.png'),
+	"chit-blue-blue-iv": require('./chit-blue-blue-iv.png'),
+	"chit-blue-blue-v": require('./chit-blue-blue-v.png'),
+	"chit-blue-blue-vi": require('./chit-blue-blue-vi.png'),
+	"chit-blue-blue-ix": require('./chit-blue-blue-ix.png'),
+	"chit-blue-blue-xii": require('./chit-blue-blue-xii.png'),
+	
+
 	"chit-blue-gray-a": require('./chit-blue-gray-a.png'),
 	"chit-blue-gray-b": require('./chit-blue-gray-b.png'),
 	"chit-blue-gray-c": require('./chit-blue-gray-c.png'),
@@ -299,7 +311,11 @@ module.exports = {
 	//"French": require('./french_flag.jpg'),
 	"French": require('./french.jpg'),
 	"Austrian": require('./austrian_flag.png'),	
+	"Federal": require('./federal.jpg'),	
+	"Confederate": require('./confederate.jpg'),	
 
+	"littlebighorn": require("./littlebighorn.jpg"),
+	"brandywine": require("./brandywine.jpg"),
 	"marengo": require("./marengo.jpg"),
 	"antietam": require("./antietam.jpg"),
 };

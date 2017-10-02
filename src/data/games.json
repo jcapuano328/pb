@@ -1,6 +1,26 @@
-[
+[	
 	{
 	    "id": 1,
+		"title": "Brandywine",
+		"subtitle": "September 11, 1777",
+		"image": "brandywine",
+		"start": {"turn": 1, "year": 1777, "month": 9, "day": 11, "hour": 8, "minute": 0},		
+		"end": {"turns": 8},
+		"command": [
+		]
+	},	
+	{
+	    "id": 2,
+		"title": "Little Big Horn",
+		"subtitle": "June 25, 1876",
+		"image": "littlebighorn",
+		"start": {"turn": 1, "year": 1876, "month": 6, "day": 25, "hour": 6, "minute": 0},		
+		"end": {"turns": 8},
+		"command": [
+		]
+	},	
+	{
+	    "id": 3,
 		"title": "Marengo",
 		"subtitle": "June 14, 1800",
 		"image": "marengo",
@@ -16,5 +36,29 @@
 			{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "V", "name": "Victor", "rating": 4},
 			{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "D", "name": "Desaix", "rating": 4}
 		]
+	},
+	{
+	    "id": 4,
+		"title": "Antietam",
+		"subtitle": "September 17, 1862",
+		"image": "antietam",
+		"start": {"turn": 1, "year": 1862, "month": 9, "day": 17, "hour": 6, "minute": 0},		
+		"end": {"turns": 8},
+		"command": [
+			{"side": "Federal", "image": "federal", "chitcolor": "blue", "labelcolor": "blue", "code": "I", "name": "Hooker", "rating": 3},
+			{"side": "Federal", "image": "federal", "chitcolor": "blue", "labelcolor": "blue", "code": "II", "name": "Sumner", "rating": 3},
+			{"side": "Federal", "image": "federal", "chitcolor": "blue", "labelcolor": "blue", "code": "IV", "name": "Couch", "rating": 3},
+			{"side": "Federal", "image": "federal", "chitcolor": "blue", "labelcolor": "blue", "code": "V", "name": "Porter", "rating": 3},
+			{"side": "Federal", "image": "federal", "chitcolor": "blue", "labelcolor": "blue", "code": "VI", "name": "Franklin", "rating": 3},
+			{"side": "Federal", "image": "federal", "chitcolor": "blue", "labelcolor": "blue", "code": "IX", "name": "Burnside", "rating": 3},
+			{"side": "Federal", "image": "federal", "chitcolor": "blue", "labelcolor": "blue", "code": "XII", "name": "Mansfield", "rating": 3},
+			{"side": "Federal", "image": "federal", "chitcolor": "blue", "labelcolor": "blue", "code": "C", "name": "Pleasonton", "rating": 3},
+			{"side": "Federal", "image": "federal", "chitcolor": "blue", "labelcolor": "blue", "code": "AR", "name": "Artillery Reserve", "rating": 3},
+						
+			{"side": "Confederate", "image": "confederate", "chitcolor": "gray", "labelcolor": "gray", "code": "I", "name": "I", "rating": 4},
+			{"side": "Confederate", "image": "confederate", "chitcolor": "gray", "labelcolor": "gray", "code": "II", "name": "II", "rating": 4},
+			{"side": "Confederate", "image": "confederate", "chitcolor": "gray", "labelcolor": "gray", "code": "C", "name": "C", "rating": 4}
+		]
 	}
+	
 ]
