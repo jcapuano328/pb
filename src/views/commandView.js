@@ -6,7 +6,7 @@ import {Style,IconButton} from 'react-native-nub';
 import {Dice,DiceTray,RollButton} from 'react-native-dice';
 import Icons from '../res';
 import CommandChit from './commandChit';
-import {resetChitCup,addChitToCup,removeChitFromCup,drawChitFromCup,addChitToCurrent,removeChitFromCurrent,delayCurrentChit,returnDelayedChitToCup} from '../actions/current';
+import {resetChitCup,addChitToCup,addChitsToCup,removeChitFromCup,drawChitFromCup,addChitToCurrent,removeChitFromCurrent,delayCurrentChit,returnDelayedChitToCup} from '../actions/current';
 
 var CommandView = React.createClass({
     dice: new Dice([
@@ -14,7 +14,12 @@ var CommandView = React.createClass({
     ]),    
     getInitialState() {
         return {
-            die: 1
+            die: 1,
+
+            diewidth: 0,
+            dieheight: 0,
+            delaywidth: 0,
+            delayheight: 0,            
         };
     },
     onReset() {
@@ -24,6 +29,9 @@ var CommandView = React.createClass({
         return (e) => {
             this.props.addChitToCup(chit);
         }
+    },
+    onAddAll(e) {
+        this.props.addChitsToCup(this.available());        
     },
     onDelay() {
         this.props.delayCurrentChit();
@@ -53,6 +61,8 @@ var CommandView = React.createClass({
         this.setState(this.state);
     },    
     render() {                     
+        let diesize = (this.state.diewidth * 0.95) || 48;
+        let delaysize = (this.state.delaywidth * 0.95) || 56;
         return (
             <View style={{flex: 1}}>
                 {/*top*/}
@@ -76,8 +86,16 @@ var CommandView = React.createClass({
                             <View style={{flex:2}}>
                                 {/*dice*/}
                                 <View style={{flex:1, flexDirection:'row'}}>
-                                    <View style={{flex: 1/*, paddingTop: 20*/}}>
-                                        <DiceTray size={Style.Scaling.scale(48)} perrow={1} dice={this.dice} values={this.dice.map((d) => d.value())} />
+                                    <View style={{flex: 1/*, paddingTop: 20*/}} onLayout={(e) => {
+                                        if (this.state.diewidth != e.nativeEvent.layout.diewidth ||
+                                            this.state.dieheight != e.nativeEvent.layout.dieheight) {
+                                            this.setState({
+                                                diewidth: e.nativeEvent.layout.width,
+                                                dieheight: e.nativeEvent.layout.height
+                                            });
+                                        }                                        
+                                    }}>
+                                        <DiceTray size={diesize} perrow={1} dice={this.dice} values={this.dice.map((d) => d.value())} />
                                     </View>     
                                     <View style={{flex:1, paddingRight:5}}>
                                         <RollButton direction={'horizontal'} onRoll={this.onDiceRoll} />
@@ -85,8 +103,16 @@ var CommandView = React.createClass({
                                 </View>
                                 {/*delay*/}                            
                                 <View style={{flex:1, flexDirection:'row', justifyContent: 'center', alignItems: 'center'}}>
-                                    <View style={{flex: 1, justifyContent: 'center', alignItems:'center'}}>
-                                        <IconButton image={Icons.delay} height={56} width={56} resizeMode='stretch' onPress={this.onDelay} />
+                                    <View style={{flex: 1, justifyContent: 'center', alignItems:'center'}} onLayout={(e) => {                                        
+                                        if (this.state.delaywidth != e.nativeEvent.layout.delaywidth ||
+                                            this.state.delayheight != e.nativeEvent.layout.delayheight) {
+                                            this.setState({
+                                                delaywidth: e.nativeEvent.layout.width,
+                                                delayheight: e.nativeEvent.layout.height
+                                            });
+                                        }                                        
+                                    }}>
+                                        <IconButton image={Icons.delay} height={delaysize} width={delaysize} resizeMode='stretch' onPress={this.onDelay} />
                                     </View>
                                     <View style={{flex:1, justifyContent: 'center', alignItems:'center'}}>                            
                                         {this.props.delay 
@@ -122,6 +148,9 @@ var CommandView = React.createClass({
                                 <IconButton image={Icons.draw} height={80} width={80} resizeMode='stretch' onPress={this.onDraw} />                            
                             </View>
                             <View style={{flex: 1, justifyContent: 'center', alignItems:'center'}}>
+                                <IconButton image={Icons.addall} height={80} width={80} resizeMode='stretch' onPress={this.onAddAll} />
+                            </View>
+                            <View style={{flex: 1, justifyContent: 'center', alignItems:'center'}}>
                                 <IconButton image={Icons.resetcup} height={80} width={80} resizeMode='stretch' onPress={this.onReset} />                        
                             </View>                        
                         </View>                        
@@ -155,6 +184,8 @@ var CommandView = React.createClass({
     available() {
         // only those command chits that are not in the cup or current or delayed
         return this.props.game.command.filter((c) => 
+            this.props.turn >= c.turn
+            &&
             !this.props.cup.find((cc) => cc.side === c.side && cc.code === c.code)
             &&
             !this.props.current.find((cc) => cc.side === c.side && cc.code === c.code)
@@ -165,6 +196,7 @@ var CommandView = React.createClass({
 });
 
 const mapStateToProps = (state) => ({    
+    turn: state.current.turn,
     cup: state.current.command.cup || [],
     current: state.current.command.chits || [],
     delay: state.current.command.delay
@@ -173,6 +205,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps =  ({
     resetChitCup,
     addChitToCup,
+    addChitsToCup,
     removeChitFromCup,
     drawChitFromCup,
     addChitToCurrent,

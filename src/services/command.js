@@ -12,10 +12,17 @@ module.exports = {
         return [];
     },
     add(chit, cup) {        
-        cup = [            
-            ...cup,
-            {...chit}
-        ];
+        if (Array.isArray(chit)) {
+            cup = [            
+                ...cup,
+                ...chit
+            ];    
+        } else {
+            cup = [            
+                ...cup,
+                {...chit}
+            ];    
+        }
                
         return shuffle(cup);        
     },

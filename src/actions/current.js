@@ -39,6 +39,11 @@ export const addChitToCup = (chit) => (dispatch,getState) => {
     dispatch({type: types.SET_CUP, value: Command.add(chit,current.command.cup)});
 }
 
+export const addChitsToCup = (chits) => (dispatch,getState) => {        
+    const {current} = getState();
+    dispatch({type: types.SET_CUP, value: Command.add(chits,current.command.cup)});
+}
+
 export const removeChitFromCup = (chit) => (dispatch,getState) => {        
     const {current} = getState();
     dispatch({type: types.SET_CUP, value: Command.remove(chit,current.command.cup)});

@@ -10,6 +10,7 @@ module.exports = {
 
 	"draw": require('./draw-from-cup.png'),
 	"drawcup": require('./drawcup.png'),
+	"addall": require('./add-all-to-cup.png'),	
 	"resetcup": require('./reset-draw-cup.png'),
 	"delay": require('./hourglass.png'),
 
