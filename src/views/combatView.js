@@ -16,7 +16,7 @@ var CombatResolution = React.createClass({
                             onDie={this.props.onDieChanged}/>
                     </View>
                     <View style={{flex: 1}}>
-                        <Text style={{alignSelf:'center'}}>{this.hits()}</Text>
+                        <Text style={{fontSize: Style.Font.medium(), alignSelf:'center'}}>{this.hits()}</Text>
                     </View>
                 </View>
                 <View style={{flex: 3}}>
@@ -124,9 +124,9 @@ var CombatView = React.createClass({
                     </View>
 
                     {/*middle*/}
-                    <View style={{flex:1}}>
+                    <View style={{flex:1, backgroundColor: 'gainsboro'}}>
                         <View style={{flex:1}} />
-                        <View style={{flex:2}}>
+                        <View style={{flex:2, paddingLeft:3, paddingRight: 3}}>
                         <RollButton direction={'horizontal'} onRoll={this.onDiceRoll} />
                         </View>
                         <View style={{flex:6}} />

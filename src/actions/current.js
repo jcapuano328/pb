@@ -2,6 +2,7 @@ import types from '../constants/actionTypes';
 import {toast} from './toast';
 import Command from '../services/command';
 import getGame from '../selectors/game';
+import getAvailable from '../selectors/available';
 
 export const reset = (e) => (dispatch,getState) => {
     const game = getGame(getState());
@@ -17,21 +18,30 @@ export const reset = (e) => (dispatch,getState) => {
             chits: []
         }
     };
+    data.command.cup = getAvailable({current:data});
     dispatch({type: types.SET_CURRENT, value: data});
 }
 
-export const prevTurn = () => (dispatch) => {    
-    dispatch({type: types.PREV_TURN});
+export const prevTurn = () => (dispatch,getState) => {    
+    const game = getGame(getState());
+    dispatch({type: types.PREV_TURN, value: game.start.turn});
 }
 export const nextTurn = () => (dispatch,getState) => {    
     const game = getGame(getState());
+    const {current} = getState();
     dispatch({type: types.NEXT_TURN, value: game.end.turns});
+    if (current.turn < game.end.turns) {
+        //resetChitCup()(dispatch,getState);
+        dispatch({type: types.SET_CHITS, value: []});
+        dispatch({type: types.SET_DELAY, value: null});
+        dispatch({type: types.SET_CUP, value: getAvailable(getState())});            
+    }
 }
 
-export const resetChitCup = () => (dispatch) => {        
-    dispatch({type: types.SET_CUP, value: Command.reset()});
+export const resetChitCup = () => (dispatch,getState) => {        
     dispatch({type: types.SET_CHITS, value: []});
     dispatch({type: types.SET_DELAY, value: null});
+    dispatch({type: types.SET_CUP, value: getAvailable(getState())});    
 }
 
 export const addChitToCup = (chit) => (dispatch,getState) => {        

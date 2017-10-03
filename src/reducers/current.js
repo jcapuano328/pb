@@ -11,8 +11,8 @@ const defaultState = {
     }
 };
 
-const prevTurn = (t) => {    
-    if (--t < 1) { t = 1; }
+const prevTurn = (t,s) => {    
+    if (--t < s) { t = s; }
     return t;    
 }
 const nextTurn = (t,m) => {    
@@ -93,7 +93,7 @@ module.exports = (state = defaultState, action) => {
     case types.PREV_TURN:        
         return {
             ...state,
-            turn: prevTurn(state.turn)
+            turn: prevTurn(state.turn, action.value)
         };
 
     case types.NEXT_TURN:
