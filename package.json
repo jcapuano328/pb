@@ -1,6 +1,6 @@
 {
 	"name": "pb",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"private": true,
 	"scripts": {
 		"start": "node node_modules/react-native/local-cli/cli.js start",
@@ -13,7 +13,7 @@
 		"install-stg": "adb -d install -r android/app/build/outputs/apk/pb-releaseStaging-1.0.apk",    
 		"install-rel": "adb -d install -r android/app/build/outputs/apk/pb-release-1.0.apk",
 		"push": "code-push release-react PubBattlesAssistant android",
-		"promote": "code-push promote PubBattlesAssistant Staging Production --description 'v 1.0.4' --mandatory",    
+		"promote": "code-push promote PubBattlesAssistant Staging Production --description 'v1.0.5' --mandatory",    
 		"bridge": "adb reverse tcp:8081 tcp:8081",
 		"menu": "adb shell input keyevent 82",
 		"logs": "adb logcat *:S ReactNative:V ReactNativeJS:V"

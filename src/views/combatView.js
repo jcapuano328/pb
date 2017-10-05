@@ -16,11 +16,11 @@ var CombatResolution = React.createClass({
                             onDie={this.props.onDieChanged}/>
                     </View>
                     <View style={{flex: 1}}>
-                        <Text style={{fontSize: Style.Font.medium(), alignSelf:'center'}}>{this.hits()}</Text>
+                        <Text style={{fontSize: Style.Font.large(), alignSelf:'center'}}>{this.hits()}</Text>
                     </View>
                 </View>
-                <View style={{flex: 3}}>
-                    <MultiSelectList title={'Modifiers'}
+                <View style={{flex: 4}}>
+                    <MultiSelectList title={'Target'}
                                     items={this.props.modifiers.map((m) => ({name: m.name, selected: this.props.mods[m.name]}))}
                                     onChanged={this.props.onModChanged}/>
                 </View>
@@ -38,29 +38,21 @@ var CombatView = React.createClass({
         {num: 1, low: 1, high: 6, diecolor: 'white', dotcolor:'black'},
         {num: 1, low: 1, high: 6, diecolor: 'white', dotcolor:'black'}
     ]),
-    modifiersAttack: [
-        {name: 'Woods', value: -1},
-        {name: 'Hills', value: -1},
-        {name: 'River', value: -1},
-        {name: 'Buildings', value: -1},
-        {name: 'Flank', value: 1},
-        {name: 'Cav vs Fresh Inf', value: -1},
-        {name: 'Cav vs Spent Inf', value: 1}
-    ],
     diceDefend: new Dice([
         {num: 1, low: 1, high: 6, diecolor: 'blue', dotcolor:'white'},
         {num: 1, low: 1, high: 6, diecolor: 'blue', dotcolor:'white'},
         {num: 1, low: 1, high: 6, diecolor: 'blue', dotcolor:'white'}
     ]),
-    modifiersDefend: [
-        {name: 'Woods', value: -1},
-        {name: 'Hills', value: -1},
-        {name: 'River', value: 1},
-        {name: 'Buildings', value: -1},
-        {name: 'Flank', value: -1},
+    modifiers: [
+        {name: 'In Woods', value: -1},
+        {name: 'Across Hills', value: -1},
+        {name: 'Across River', value: -1},
+        {name: 'In Buildings', value: -1},
+        {name: 'At Flank', value: 1},
+        {name: 'From Flank', value: -1},
         {name: 'Cav vs Fresh Inf', value: -1},
         {name: 'Cav vs Spent Inf', value: 1}
-    ],    
+    ],
     getInitialState() {
         return {
             die1: 1,
@@ -105,43 +97,41 @@ var CombatView = React.createClass({
         this.state.die5 = this.diceDefend.die(2);
         this.state.die6 = this.diceDefend.die(3);        
         
-        this.applyModifiers(this.state.attackmods, this.modifiersAttack, ['die1','die2','die3']);
-        this.applyModifiers(this.state.defendmods, this.modifiersDefend, ['die4','die5','die6']);
+        this.applyModifiers(this.state.attackmods, this.modifiers, ['die1','die2','die3']);
+        this.applyModifiers(this.state.defendmods, this.modifiers, ['die4','die5','die6']);
 
         this.setState(this.state);
     },
     render() {
         return (
-            <View style={{flex: 1}}>                
-                <View style={{flex:3, flexDirection:'row'}}>
+            <View style={{flex: 1, marginTop:3}}>
+                {/*top*/}
+                <View style={{flex:1, flexDirection: 'row', backgroundColor: 'gainsboro'}}>
+                    <View style={{flex:3}} />
+                    <View style={{flex:2, paddingLeft:3, paddingRight: 3}}>
+                        <RollButton direction={'horizontal'} onRoll={this.onDiceRoll} />
+                    </View>
+                    <View style={{flex:3}} />
+                </View>
+                {/*bottom*/}                
+                <View style={{flex:6, flexDirection:'row'}}>
                     {/*left*/}
-                    <View style={{flex:3}}>
+                    <View style={{flex:1, borderRightColor: 'gray', borderRightWidth: 1}}>
                         <CombatResolution title={'Attacker'} 
                             dice={this.diceAttack} values={[this.state.die1,this.state.die2,this.state.die3]} 
                             onDieChanged={this.onDieChangedAttack} 
-                            modifiers={this.modifiersAttack} mods={this.state.attackmods} 
+                            modifiers={this.modifiers} mods={this.state.attackmods} 
                             onModChanged={this.onModChangedAttack} />
                     </View>
-
-                    {/*middle*/}
-                    <View style={{flex:1, backgroundColor: 'gainsboro'}}>
-                        <View style={{flex:1}} />
-                        <View style={{flex:2, paddingLeft:3, paddingRight: 3}}>
-                        <RollButton direction={'horizontal'} onRoll={this.onDiceRoll} />
-                        </View>
-                        <View style={{flex:6}} />
-                    </View>
-                    
                     {/*right*/}
-                    <View style={{flex:3}}>
+                    <View style={{flex:1}}>
                         <CombatResolution title={'Defender'} 
                         dice={this.diceDefend} values={[this.state.die4,this.state.die5,this.state.die6]} 
                         onDieChanged={this.onDieChangedDefend} 
-                        modifiers={this.modifiersDefend} mods={this.state.defendmods} 
+                        modifiers={this.modifiers} mods={this.state.defendmods} 
                         onModChanged={this.onModChangedDefend} />                        
                     </View>
-                </View>
-                <View style={{flex:2}} />
+                </View>                
             </View>
         );
     },

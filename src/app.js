@@ -23,3 +23,4 @@ let App = React.createClass({
 });
 
 module.exports = codePush({ checkFrequency: codePush.CheckFrequency.ON_APP_RESUME })(App);
+	//App;
