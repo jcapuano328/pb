@@ -35,7 +35,17 @@
 			{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "L", "name": "Lanne", "rating": 4, "turn": 1},
 			{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "V", "name": "Victor", "rating": 4, "turn": 1},
 			{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "D", "name": "Desaix", "rating": 4, "turn": 5}
-		]
+		],
+		"modifiers": [
+			{"name": "In Woods", "value": -1},
+			{"name": "Across Hills", "value": -1},
+			{"name": "Across River", "value": -1},
+			{"name": "In Buildings", "value": -1},
+			{"name": "At Flank", "value": 1},
+			{"name": "From Flank", "value": -1},
+			{"name": "Cav vs Fresh Inf", "value": -1},
+			{"name": "Cav vs Spent Inf", "value": 1}
+		]			
 	},
 	{
 	    "id": 4,
@@ -47,18 +57,27 @@
 		"command": [
 			{"side": "Federal", "image": "federal", "chitcolor": "blue", "labelcolor": "blue", "code": "I", "name": "Hooker", "rating": 3, "turn": 1},
 			{"side": "Federal", "image": "federal", "chitcolor": "blue", "labelcolor": "blue", "code": "II", "name": "Sumner", "rating": 3, "turn": 1},
-			{"side": "Federal", "image": "federal", "chitcolor": "blue", "labelcolor": "blue", "code": "IV", "name": "Couch", "rating": 3, "turn": 1},
+			{"side": "Federal", "image": "federal", "chitcolor": "blue", "labelcolor": "blue", "code": "IV", "name": "Couch", "rating": 3, "turn": 9},
 			{"side": "Federal", "image": "federal", "chitcolor": "blue", "labelcolor": "blue", "code": "V", "name": "Porter", "rating": 3, "turn": 1},
-			{"side": "Federal", "image": "federal", "chitcolor": "blue", "labelcolor": "blue", "code": "VI", "name": "Franklin", "rating": 3, "turn": 1},
+			{"side": "Federal", "image": "federal", "chitcolor": "blue", "labelcolor": "blue", "code": "VI", "name": "Franklin", "rating": 3, "turn": 3},
 			{"side": "Federal", "image": "federal", "chitcolor": "blue", "labelcolor": "blue", "code": "IX", "name": "Burnside", "rating": 3, "turn": 1},
 			{"side": "Federal", "image": "federal", "chitcolor": "blue", "labelcolor": "blue", "code": "XII", "name": "Mansfield", "rating": 3, "turn": 1},
-			{"side": "Federal", "image": "federal", "chitcolor": "blue", "labelcolor": "blue", "code": "C", "name": "Pleasonton", "rating": 3, "turn": 1},
+			{"side": "Federal", "image": "federal", "chitcolor": "blue", "labelcolor": "blueyellow", "code": "C", "name": "Pleasonton", "rating": 3, "turn": 1},
 			{"side": "Federal", "image": "federal", "chitcolor": "blue", "labelcolor": "blue", "code": "AR", "name": "Artillery Reserve", "rating": 3, "turn": 1},
 						
-			{"side": "Confederate", "image": "confederate", "chitcolor": "gray", "labelcolor": "gray", "code": "I", "name": "I", "rating": 4, "turn": 1},
-			{"side": "Confederate", "image": "confederate", "chitcolor": "gray", "labelcolor": "gray", "code": "II", "name": "II", "rating": 4, "turn": 1},
-			{"side": "Confederate", "image": "confederate", "chitcolor": "gray", "labelcolor": "gray", "code": "C", "name": "C", "rating": 4, "turn": 1}
-		]
+			{"side": "Confederate", "image": "confederate", "chitcolor": "gray", "labelcolor": "butternut", "code": "I", "name": "I", "rating": 4, "turn": 1},
+			{"side": "Confederate", "image": "confederate", "chitcolor": "gray", "labelcolor": "butternut", "code": "II", "name": "II", "rating": 4, "turn": 1},
+			{"side": "Confederate", "image": "confederate", "chitcolor": "gray", "labelcolor": "butternutyellow", "code": "C", "name": "C", "rating": 4, "turn": 1}
+		],
+		"modifiers": [
+			{"name": "In Woods", "value": -1},
+			{"name": "Across Hills", "value": -1},
+			{"name": "Across River", "value": -1},
+			{"name": "In Buildings", "value": -1},
+			{"name": "In Sunken Road", "value": -1},
+			{"name": "At Flank", "value": 1},
+			{"name": "From Flank", "value": -1}
+		]		
 	}
 	
 ]

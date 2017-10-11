@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import {Style,MultiSelectList} from 'react-native-nub';
 import {Dice,DiceTray,RollButton} from 'react-native-dice';
+import getModifiers from '../selectors/modifiers';
 
 var CombatResolution = React.createClass({
     render() {
@@ -43,16 +44,6 @@ var CombatView = React.createClass({
         {num: 1, low: 1, high: 6, diecolor: 'blue', dotcolor:'white'},
         {num: 1, low: 1, high: 6, diecolor: 'blue', dotcolor:'white'}
     ]),
-    modifiers: [
-        {name: 'In Woods', value: -1},
-        {name: 'Across Hills', value: -1},
-        {name: 'Across River', value: -1},
-        {name: 'In Buildings', value: -1},
-        {name: 'At Flank', value: 1},
-        {name: 'From Flank', value: -1},
-        {name: 'Cav vs Fresh Inf', value: -1},
-        {name: 'Cav vs Spent Inf', value: 1}
-    ],
     getInitialState() {
         return {
             die1: 1,
@@ -97,8 +88,8 @@ var CombatView = React.createClass({
         this.state.die5 = this.diceDefend.die(2);
         this.state.die6 = this.diceDefend.die(3);        
         
-        this.applyModifiers(this.state.attackmods, this.modifiers, ['die1','die2','die3']);
-        this.applyModifiers(this.state.defendmods, this.modifiers, ['die4','die5','die6']);
+        this.applyModifiers(this.state.attackmods, this.props.modifiers, ['die1','die2','die3']);
+        this.applyModifiers(this.state.defendmods, this.props.modifiers, ['die4','die5','die6']);
 
         this.setState(this.state);
     },
@@ -120,7 +111,7 @@ var CombatView = React.createClass({
                         <CombatResolution title={'Attacker'} 
                             dice={this.diceAttack} values={[this.state.die1,this.state.die2,this.state.die3]} 
                             onDieChanged={this.onDieChangedAttack} 
-                            modifiers={this.modifiers} mods={this.state.attackmods} 
+                            modifiers={this.props.modifiers} mods={this.state.attackmods} 
                             onModChanged={this.onModChangedAttack} />
                     </View>
                     {/*right*/}
@@ -128,7 +119,7 @@ var CombatView = React.createClass({
                         <CombatResolution title={'Defender'} 
                         dice={this.diceDefend} values={[this.state.die4,this.state.die5,this.state.die6]} 
                         onDieChanged={this.onDieChangedDefend} 
-                        modifiers={this.modifiers} mods={this.state.defendmods} 
+                        modifiers={this.props.modifiers} mods={this.state.defendmods} 
                         onModChanged={this.onModChangedDefend} />                        
                     </View>
                 </View>                
@@ -154,4 +145,12 @@ var CombatView = React.createClass({
     }
 });
 
-module.exports = CombatView;
+const mapStateToProps = (state) => ({    
+    modifiers: getModifiers(state)
+});
+
+
+module.exports = connect(
+  mapStateToProps  
+)(CombatView);
+
