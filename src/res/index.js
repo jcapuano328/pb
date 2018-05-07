@@ -38,15 +38,23 @@ module.exports = {
 	"chit-gray-butternut-i": require('./chits/chit-gray-butternut-i.png'),
 	"chit-gray-butternut-ii": require('./chits/chit-gray-butternut-ii.png'),
 	"chit-gray-butternutyellow-c": require('./chits/chit-gray-butternutyellow-c.png'),
+
+	// monmouth
+	"chit-red-white-c": require('./chits/chit-red-white-c.png'),
+	"chit-blue-gray-l": require('./chits/chit-blue-gray-l.png'),
+
 		
 	//"French": require('./french_flag.jpg'),
 	"French": require('./french.jpg'),
 	"Austrian": require('./austrian_flag.png'),	
 	"Federal": require('./federal.jpg'),	
 	"Confederate": require('./confederate.jpg'),	
+	"Colonial": require('./colonial.png'),	
+	"British": require('./british.png'),	
 
 	"littlebighorn": require("./littlebighorn.jpg"),
 	"brandywine": require("./brandywine.jpg"),
 	"marengo": require("./marengo.jpg"),
 	"antietam": require("./antietam.jpg"),
+	"monmouth": require("./monmouth.png")
 };

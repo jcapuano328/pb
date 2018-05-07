@@ -78,6 +78,26 @@
 			{"name": "At Flank", "value": 1},
 			{"name": "From Flank", "value": -1}
 		]		
-	}
+	},
+	{
+	    "id": 5,
+		"title": "Monmouth",
+		"subtitle": "June 28, 1778",
+		"image": "monmouth",
+		"start": {"turn": 1, "year": 1778, "month": 6, "day": 28, "hour": 6, "minute": 0},		
+		"end": {"turns": 7},
+		"command": [
+			{"side": "Colonials", "image": "colonial", "chitcolor": "blue", "labelcolor": "gray", "code": "L", "name": "Lee", "rating": 2, "turn": 1},						
+			{"side": "Crown", "image": "british", "chitcolor": "red", "labelcolor": "white", "code": "C", "name": "Cornwallis", "rating": 4, "turn": 3}
+		],
+		"modifiers": [
+			{"name": "In Woods", "value": -1},
+			{"name": "Across Hills", "value": -1},
+			{"name": "Across River", "value": -1},
+			{"name": "In Buildings", "value": -1},
+			{"name": "At Flank", "value": 1},
+			{"name": "From Flank", "value": -1}
+		]		
+	}	
 	
 ]
