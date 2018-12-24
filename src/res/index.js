@@ -43,18 +43,61 @@ module.exports = {
 	"chit-red-white-c": require('./chits/chit-red-white-c.png'),
 	"chit-blue-gray-l": require('./chits/chit-blue-gray-l.png'),
 
-		
+	// waterloo
+	"chit-blue-white-g": require('./chits/chit-blue-white-g.png'),	
+	"chit-blue-white-i": require('./chits/chit-blue-white-i.png'),	
+	"chit-blue-white-ii": require('./chits/chit-blue-white-ii.png'),	
+	"chit-blue-white-vi": require('./chits/chit-blue-white-vi.png'),	
+	"chit-blue-whitered-iii": require('./chits/chit-blue-whitered-iii.png'),	
+	"chit-blue-whitered-iv": require('./chits/chit-blue-whitered-iv.png'),	
+
+	"chit-red-white-i": require('./chits/chit-red-white-i.png'),	
+	"chit-red-white-ii": require('./chits/chit-red-white-ii.png'),	
+	"chit-red-white-c": require('./chits/chit-red-white-c.png'),	
+	"chit-red-white-r": require('./chits/chit-red-white-r.png'),	
+
+	"chit-gray-gray-i": require('./chits/chit-gray-gray-i.png'),			
+	"chit-gray-gray-ii": require('./chits/chit-gray-gray-ii.png'),			
+	"chit-gray-gray-iv": require('./chits/chit-gray-gray-iv.png'),			
+
+	// wagram
+	"chit-blue-white-g": require('./chits/chit-blue-white-g.png'),	
+	//"chit-blue-white-ii": require('./chits/chit-blue-white-i.png'),	
+	"chit-blue-white-iii": require('./chits/chit-blue-white-iii.png'),	
+	"chit-blue-white-iv": require('./chits/chit-blue-white-iv.png'),	
+	"chit-blue-white-ai": require('./chits/chit-blue-white-ai.png'),	
+	//"chit-blue-white-v": require('./chits/chit-blue-white-v.png'),	
+	//"chit-blue-white-vi": require('./chits/chit-blue-white-vi.png'),	
+	"chit-blue-white-vii": require('./chits/chit-blue-white-vii.png'),	
+	"chit-blue-white-ix": require('./chits/chit-blue-white-ix.png'),	
+	"chit-blue-white-xi": require('./chits/chit-blue-white-xi.png'),	
+	"chit-blue-whitered-cr": require('./chits/chit-blue-whitered-cr.png'),	
+	
+	"chit-white-gray-ag": require('./chits/chit-white-gray-ag.png'),	
+	"chit-white-gray-i": require('./chits/chit-white-gray-i.png'),	
+	"chit-white-gray-ii": require('./chits/chit-white-gray-ii.png'),	
+	"chit-white-gray-iii": require('./chits/chit-white-gray-iii.png'),	
+	"chit-white-gray-iv": require('./chits/chit-white-gray-iv.png'),	
+	"chit-white-gray-v": require('./chits/chit-white-gray-v.png'),	
+	"chit-white-gray-vi": require('./chits/chit-white-gray-vi.png'),	
+	"chit-white-gray-r": require('./chits/chit-white-gray-r.png'),	
+	"chit-white-gray-ia": require('./chits/chit-white-gray-ia.png'),			
+	
 	//"French": require('./french_flag.jpg'),
-	"French": require('./french.jpg'),
+	"French": require('./french.png'),
 	"Austrian": require('./austrian_flag.png'),	
 	"Federal": require('./federal.jpg'),	
 	"Confederate": require('./confederate.jpg'),	
 	"Colonial": require('./colonial.png'),	
+	"Crown": require('./crown.png'),	
 	"British": require('./british.png'),	
+	"Prussian": require('./prussian.png'),
 
 	"littlebighorn": require("./littlebighorn.jpg"),
 	"brandywine": require("./brandywine.jpg"),
 	"marengo": require("./marengo.jpg"),
 	"antietam": require("./antietam.jpg"),
-	"monmouth": require("./monmouth.png")
+	"monmouth": require("./monmouth.png"),
+	"waterloo": require("./waterloo.jpg"),
+	"wagram": require("./wagram.jpg")
 };
