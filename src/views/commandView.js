@@ -59,7 +59,7 @@ var CommandView = React.createClass({
         return (
             <View style={{flex: 1}}>
                 {/*top*/}
-                <View style={{flex:2, flexDirection: 'row'}}>
+                <View style={{flex:3, flexDirection: 'row'}}>
                     <View style={{flex:2}}>
                         <Text style={{fontSize: Style.Font.medium(),fontWeight: 'bold',backgroundColor: 'silver', textAlign: 'center'}}>Current</Text>
                         <View style={{flex:1, flexDirection:'row'}}>
@@ -112,14 +112,15 @@ var CommandView = React.createClass({
                                         ? <CommandChit chit={this.props.delay} size={32} onPress={this.onReturnDelayed} />
                                         : <View />
                                         }                                
-                                    </View>   
-                                </View>                                
+                                    </View>
+                                </View>
+                                <View style={{flex:1}}/>
                             </View>                            
                         </View>
                     </View>   
                 </View>
                 {/*bottom*/}
-                <View style={{flex:6}}>
+                <View style={{flex:5}}>
                     <Text style={{fontSize: Style.Font.medium(),fontWeight: 'bold',backgroundColor: 'silver', textAlign: 'center'}}>Available</Text>
                     <View style={{flex:1, flexDirection: 'row'}}>                    
                         {/*left*/}
@@ -132,7 +133,7 @@ var CommandView = React.createClass({
                             </View>                        
                         </View>                        
                         {/*right*/}
-                        <View style={{flex:1.75, marginRight:50}}>
+                        <View style={{flex:3}}>
                             <Image source={Icons.drawcup} resizeMode={'stretch'} style={{
                                 flex: 1,
                                 width: null,
@@ -141,10 +142,10 @@ var CommandView = React.createClass({
                             }}>                        
                                 <View style={{flex:1, flexDirection:'row', flexWrap: 'wrap', 
                                         justifyContent:'space-around', alignItems:'flex-start', 
-                                        marginTop: Style.Scaling.scale(75), 
+                                        marginTop: Style.Scaling.scale(65), 
                                         marginBottom: Style.Scaling.scale(30), 
-                                        marginLeft: Style.Scaling.scale(30), 
-                                        marginRight: Style.Scaling.scale(30)
+                                        marginLeft: Style.Scaling.scale(45), 
+                                        marginRight: Style.Scaling.scale(45)
                                     }}
                                 >                            
                                     {this.props.cup.map((c,i) => 
