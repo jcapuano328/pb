@@ -99,5 +99,5 @@ module.exports = {
 	"antietam": require("./antietam.jpg"),
 	"monmouth": require("./monmouth.png"),
 	"waterloo": require("./waterloo.jpg"),
-	"wagram": require("./wagram.jpg")
+	"wagram": require("./wagram.png")
 };

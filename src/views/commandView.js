@@ -6,7 +6,7 @@ import {Style,IconButton} from 'react-native-nub';
 import {Dice,DiceTray,RollButton} from 'react-native-dice';
 import Icons from '../res';
 import CommandChit from './commandChit';
-import {resetChitCup,addChitToCup,removeChitFromCup,drawChitFromCup,addChitToCurrent,removeChitFromCurrent,delayCurrentChit,returnDelayedChitToCup} from '../actions/current';
+import {resetChitCup,addChitToCup,removeChitFromCup,drawChitFromCup,addChitToCurrent,removeChitFromCurrent,addChitToPool,removeChitFromOptional,delayCurrentChit,returnDelayedChitToCup} from '../actions/current';
 
 var CommandView = React.createClass({
     dice: new Dice([
@@ -47,6 +47,13 @@ var CommandView = React.createClass({
         this.props.drawChitFromCup();//true);        
         this.props.returnDelayedChitToCup();
     },
+    onAddToPool(chit) {
+        return (e) => {
+            this.props.removeChitFromOptional(chit);
+            this.props.addChitToPool(chit);
+            this.props.addChitToCup(chit);
+        }
+    },
     onDiceRoll(d) {
         this.dice.roll();
         this.state.die = this.dice.die(1);
@@ -59,7 +66,7 @@ var CommandView = React.createClass({
         return (
             <View style={{flex: 1}}>
                 {/*top*/}
-                <View style={{flex:3, flexDirection: 'row'}}>
+                <View style={{flex:4, flexDirection: 'row'}}>
                     <View style={{flex:2}}>
                         <Text style={{fontSize: Style.Font.medium(),fontWeight: 'bold',backgroundColor: 'silver', textAlign: 'center'}}>Current</Text>
                         <View style={{flex:1, flexDirection:'row'}}>
@@ -115,45 +122,63 @@ var CommandView = React.createClass({
                                     </View>
                                 </View>
                                 <View style={{flex:1}}/>
+                                <View style={{flex:1}}/>
                             </View>                            
                         </View>
                     </View>   
                 </View>
                 {/*bottom*/}
-                <View style={{flex:5}}>
-                    <Text style={{fontSize: Style.Font.medium(),fontWeight: 'bold',backgroundColor: 'silver', textAlign: 'center'}}>Available</Text>
-                    <View style={{flex:1, flexDirection: 'row'}}>                    
-                        {/*left*/}
-                        <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
-                            <View style={{flex: 1, justifyContent: 'center', alignItems:'center'}}>
-                                <IconButton image={Icons.draw} height={Style.Scaling.scale(80)} width={Style.Scaling.scale(80)} resizeMode='stretch' onPress={this.onDraw} />                            
-                            </View>
-                            <View style={{flex: 1, justifyContent: 'center', alignItems:'center'}}>
-                                <IconButton image={Icons.resetcup} height={Style.Scaling.scale(80)} width={Style.Scaling.scale(80)} resizeMode='stretch' onPress={this.onReset} />
-                            </View>                        
-                        </View>                        
-                        {/*right*/}
-                        <View style={{flex:3}}>
-                            <Image source={Icons.drawcup} resizeMode={'stretch'} style={{
-                                flex: 1,
-                                width: null,
-                                height: null,
-                                backgroundColor: 'transparent'
-                            }}>                        
-                                <View style={{flex:1, flexDirection:'row', flexWrap: 'wrap', 
-                                        justifyContent:'space-around', alignItems:'flex-start', 
-                                        marginTop: Style.Scaling.scale(65), 
-                                        marginBottom: Style.Scaling.scale(30), 
-                                        marginLeft: Style.Scaling.scale(45), 
-                                        marginRight: Style.Scaling.scale(45)
-                                    }}
-                                >                            
-                                    {this.props.cup.map((c,i) => 
-                                        <CommandChit key={i} chit={c} size={32} onPress={this.onJump(c)} />
-                                    )}
+                <View style={{flex:4, flexDirection: 'row'}}>
+                    {/*left*/}
+                    <View style={{flex:4}}>
+                        <Text style={{fontSize: Style.Font.medium(),fontWeight: 'bold',backgroundColor: 'silver', textAlign: 'center'}}>Available</Text>
+                        <View style={{flex:1, flexDirection: 'row'}}>                    
+                            {/*left*/}
+                            <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
+                                <View style={{flex: 1, justifyContent: 'center', alignItems:'center'}}>
+                                    <IconButton image={Icons.draw} height={Style.Scaling.scale(80)} width={Style.Scaling.scale(80)} resizeMode='stretch' onPress={this.onDraw} />                            
                                 </View>
-                            </Image>                        
-                        </View>                        
+                                <View style={{flex: 1, justifyContent: 'center', alignItems:'center'}}>
+                                    <IconButton image={Icons.resetcup} height={Style.Scaling.scale(80)} width={Style.Scaling.scale(80)} resizeMode='stretch' onPress={this.onReset} />
+                                </View>                        
+                            </View>                        
+                            {/*right*/}
+                            <View style={{flex:3}}>
+                                <Image source={Icons.drawcup} resizeMode={'stretch'} style={{
+                                    flex: 1,
+                                    width: null,
+                                    height: null,
+                                    backgroundColor: 'transparent'
+                                }}>                        
+                                    <View style={{flex:1, flexDirection:'row', flexWrap: 'wrap', 
+                                            justifyContent:'space-around', alignItems:'flex-start', 
+                                            marginTop: Style.Scaling.scale(45), 
+                                            marginBottom: Style.Scaling.scale(10), 
+                                            marginLeft: Style.Scaling.scale(20), 
+                                            marginRight: Style.Scaling.scale(20)
+                                        }}
+                                    >                            
+                                        {this.props.cup.map((c,i) => 
+                                            <CommandChit key={i} chit={c} size={32} onPress={this.onJump(c)} />
+                                        )}
+                                    </View>
+                                </Image>                        
+                            </View>                        
+                        </View>
+                    </View>
+                    {/*right*/}
+                    <View style={{flex:1}}>
+                        <Text style={{fontSize: Style.Font.medium(),fontWeight: 'bold',backgroundColor: 'silver', textAlign: 'center'}}>Optional</Text>
+                        <View style={{flex:1, flexDirection:'row', flexWrap: 'wrap', 
+                                justifyContent:'space-around', alignItems:'flex-start',                                 
+                                margin: 2,
+                                borderLeftColor: 'gray', borderLeftWidth: 1                                
+                            }}
+                        >                            
+                            {this.props.optional.map((c,i) => 
+                                <CommandChit key={i} chit={c} size={32} onPress={this.onAddToPool(c)} />
+                            )}
+                        </View>
                     </View>
                 </View>            
             </View>
@@ -164,6 +189,7 @@ var CommandView = React.createClass({
 const mapStateToProps = (state) => ({    
     cup: state.current.command.cup || [],
     current: state.current.command.chits || [],
+    optional: state.current.command.optional || [],
     delay: state.current.command.delay
 });
 
@@ -174,6 +200,8 @@ const mapDispatchToProps =  ({
     drawChitFromCup,
     addChitToCurrent,
     removeChitFromCurrent,
+    addChitToPool,
+    removeChitFromOptional,
     delayCurrentChit,
     returnDelayedChitToCup
 });

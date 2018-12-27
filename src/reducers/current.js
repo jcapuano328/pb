@@ -89,7 +89,27 @@ module.exports = (state = defaultState, action) => {
                 chits: state.command.chits.filter((c) => c.side !== action.value.side || c.code !== action.value.code)
             }            
         };
+
+    case types.ADD_CHIT_TO_POOL:
+        let pool = [...state.command.pool, action.value.chit];
+        return {
+            ...state,
+            command: {
+                ...state.command,
+                pool: pool
+            }
+        };
         
+    case types.REMOVE_CHIT_FROM_OPTIONAL:
+        return {
+            ...state,
+            command: {
+                ...state.command,
+                optional: state.command.optional.filter((c) => c.side !== action.value.side || c.code !== action.value.code)
+            }            
+        };
+
+
     case types.PREV_TURN:        
         return {
             ...state,

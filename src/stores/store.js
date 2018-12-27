@@ -17,6 +17,7 @@ import rootReducer from '../reducers';
 			command: {
                 cup: [],
                 current: [],
+                optional: [],
 				delay: {}
 			}
         }

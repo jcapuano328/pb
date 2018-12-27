@@ -7,7 +7,16 @@ import getAvailable from '../selectors/available';
 export const reset = (e) => (dispatch,getState) => {
     const game = getGame(getState());
     const {current} = getState();
-    e = e || {id: current.game, start: {turn: game && game.start ? game.start.turn : 1}};
+    e = e || {
+        id: current.game, 
+        start: {
+            turn: game && game.start ? game.start.turn : 1
+        }, 
+        command: {
+            chits: game && game.command && game.command.chits ? game.command.chits : [], 
+            optional: game && game.command && game.command.optional ? game.command.optional : []
+        }
+    };
     
     let data = {
         game: e.id,
@@ -15,7 +24,9 @@ export const reset = (e) => (dispatch,getState) => {
         command: {
             cup: [],
             delay: null,
-            chits: []
+            chits: [],
+            pool: e.command.chits || [],
+            optional: e.command.optional || []
         }
     };
     data.command.cup = getAvailable({current:data});
@@ -80,6 +91,14 @@ export const addChitToCurrent = (chit) => (dispatch,getState) => {
 
 export const removeChitFromCurrent = (chit) => (dispatch,getState) => {    
     dispatch({type: types.REMOVE_CHIT, value: chit});    
+}
+
+export const addChitToPool = (chit) => (dispatch,getState) => {    
+    dispatch({type: types.ADD_CHIT_TO_POOL, value: {chit: chit}});    
+}
+
+export const removeChitFromOptional = (chit) => (dispatch,getState) => {
+    dispatch({type: types.REMOVE_CHIT_FROM_OPTIONAL, value: chit});    
 }
 
 export const delayCurrentChit = () => (dispatch,getState) => {        
