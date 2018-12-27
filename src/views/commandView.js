@@ -136,10 +136,10 @@ var CommandView = React.createClass({
                             {/*left*/}
                             <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
                                 <View style={{flex: 1, justifyContent: 'center', alignItems:'center'}}>
-                                    <IconButton image={Icons.draw} height={Style.Scaling.scale(80)} width={Style.Scaling.scale(80)} resizeMode='stretch' onPress={this.onDraw} />                            
+                                    <IconButton image={Icons.draw} height={Style.Scaling.scale(70)} width={Style.Scaling.scale(70)} resizeMode='stretch' onPress={this.onDraw} />                            
                                 </View>
                                 <View style={{flex: 1, justifyContent: 'center', alignItems:'center'}}>
-                                    <IconButton image={Icons.resetcup} height={Style.Scaling.scale(80)} width={Style.Scaling.scale(80)} resizeMode='stretch' onPress={this.onReset} />
+                                    <IconButton image={Icons.resetcup} height={Style.Scaling.scale(70)} width={Style.Scaling.scale(70)} resizeMode='stretch' onPress={this.onReset} />
                                 </View>                        
                             </View>                        
                             {/*right*/}
