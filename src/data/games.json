@@ -4,8 +4,16 @@
 		"title": "Brandywine",
 		"subtitle": "September 11, 1777",
 		"image": "brandywine",
-		"start": {"turn": 1, "year": 1777, "month": 9, "day": 11, "hour": 8, "minute": 0},		
-		"end": {"turns": 8},
+		"turns": [
+			"Sep 11, 1777 08:00",
+			"Sep 11, 1777 09:30",
+			"Sep 11, 1777 11:00",
+			"Sep 11, 1777 12:30",
+			"Sep 11, 1777 14:00",
+			"Sep 11, 1777 15:30",
+			"Sep 11, 1777 17:00",
+			"Sep 11, 1777 18:30"
+		],
 		"command": {
 			"chits": [],
 			"optional": []
@@ -16,8 +24,16 @@
 		"title": "Little Big Horn",
 		"subtitle": "June 25, 1876",
 		"image": "littlebighorn",
-		"start": {"turn": 1, "year": 1876, "month": 6, "day": 25, "hour": 6, "minute": 0},		
-		"end": {"turns": 8},
+		"turns": [
+			"Jun 25, 1876 06:00",
+			"Jun 25, 1876 07:30",
+			"Jun 25, 1876 09:00",
+			"Jun 25, 1876 10:30",
+			"Jun 25, 1876 12:00",
+			"Jun 25, 1876 13:30",
+			"Jun 25, 1876 15:00",
+			"Jun 25, 1876 16:30"
+		],
 		"command": {
 			"chits": [],
 			"optional": []
@@ -28,8 +44,17 @@
 		"title": "Marengo",
 		"subtitle": "June 14, 1800",
 		"image": "marengo",
-		"start": {"turn": 0, "year": 1800, "month": 6, "day": 14, "hour": 9, "minute": 0},		
-		"end": {"turns": 8},
+		"turns": [
+			"Jun 14, 1800 Special",
+			"Jun 14, 1800 09:00",
+			"Jun 14, 1800 10:30",
+			"Jun 14, 1800 12:00",
+			"Jun 14, 1800 13:30",
+			"Jun 14, 1800 15:00",
+			"Jun 14, 1800 16:30",
+			"Jun 14, 1800 18:00",
+			"Jun 14, 1800 19:30"
+		],		
 		"command": {
 			"chits": [
 				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "M", "name": "Melas", "rating": 3, "turn": 0},
@@ -59,8 +84,16 @@
 		"title": "Antietam",
 		"subtitle": "September 17, 1862",
 		"image": "antietam",
-		"start": {"turn": 1, "year": 1862, "month": 9, "day": 17, "hour": 6, "minute": 0},		
-		"end": {"turns": 8},
+		"turns": [
+			"Sep 17, 1862 06:00",
+			"Sep 17, 1862 07:30",
+			"Sep 17, 1862 09:00",
+			"Sep 17, 1862 10:30",
+			"Sep 17, 1862 12:00",
+			"Sep 17, 1862 13:30",
+			"Sep 17, 1862 15:00",
+			"Sep 17, 1862 16:30"
+		],		
 		"command": {
 			"chits": [
 				{"side": "Federal", "image": "federal", "chitcolor": "blue", "labelcolor": "blue", "code": "I", "name": "Hooker", "rating": 3, "turn": 1},
@@ -94,8 +127,15 @@
 		"title": "Monmouth",
 		"subtitle": "June 28, 1778",
 		"image": "monmouth",
-		"start": {"turn": 1, "year": 1778, "month": 6, "day": 28, "hour": 6, "minute": 0},		
-		"end": {"turns": 7},
+		"turns": [
+			"Jun 28, 1778 06:00",
+			"Jun 28, 1778 07:30",
+			"Jun 28, 1778 09:00",
+			"Jun 28, 1778 10:30",
+			"Jun 28, 1778 12:00",
+			"Jun 28, 1778 13:30",
+			"Jun 28, 1778 15:00"
+		],		
 		"command": {
 			"chits": [
 				{"side": "Colonials", "image": "colonial", "chitcolor": "blue", "labelcolor": "gray", "code": "L", "name": "Lee", "rating": 2, "turn": 1},						
@@ -117,8 +157,15 @@
 		"title": "Waterloo",
 		"subtitle": "June 18, 1815",
 		"image": "waterloo",
-		"start": {"turn": 1, "year": 1815, "month": 6, "day": 18, "hour": 11, "minute": 0},		
-		"end": {"turns": 7},
+		"turns": [
+			"Jun 18, 1815 11:00",
+			"Jun 18, 1815 12:30",
+			"Jun 18, 1815 14:00",
+			"Jun 18, 1815 15:30",
+			"Jun 18, 1815 17:00",
+			"Jun 18, 1815 18:30",
+			"Jun 18, 1815 20:00"
+		],				
 		"command": {
 			"chits": [
 				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "G", "name": "Napoleon", "rating": 2, "turn": 1},						
@@ -159,31 +206,39 @@
 		"title": "Wagram",
 		"subtitle": "Main Battle: July 6, 1809",
 		"image": "wagram",
-		"start": {"turn": 1, "year": 1809, "month": 7, "day": 6, "hour": 4, "minute": 0},		
-		"end": {"turns": 8},
+		"turns": [
+			"Jul 6, 1809 04:00",
+			"Jul 6, 1809 05:30",
+			"Jul 6, 1809 07:00",
+			"Jul 6, 1809 08:30",
+			"Jul 6, 1809 10:00",
+			"Jul 6, 1809 11:30",
+			"Jul 6, 1809 13:00",
+			"Jul 6, 1809 14:30"
+		],				
 		"command": {
 			"chits": [
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "G", "name": "Napoleon", "rating": 5, "turn": 0},									
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "II", "name": "Oudinot", "rating": 4, "turn": 0},
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "III", "name": "Davout", "rating": 4, "turn": 0},
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "IV", "name": "Massena", "rating": 4, "turn": 0},
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "VII", "name": "Wrede", "rating": 4, "turn": 0},
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "IX", "name": "Bernadotte", "rating": 4, "turn": 0},
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "whitered", "code": "CR", "name": "Bessiers", "rating": 4, "turn": 0},
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "G", "name": "Napoleon", "rating": 5, "turn": 1},									
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "II", "name": "Oudinot", "rating": 4, "turn": 1},
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "III", "name": "Davout", "rating": 4, "turn": 1},
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "IV", "name": "Massena", "rating": 4, "turn": 1},
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "VII", "name": "Wrede", "rating": 4, "turn": 1},
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "IX", "name": "Bernadotte", "rating": 4, "turn": 1},
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "whitered", "code": "CR", "name": "Bessiers", "rating": 4, "turn": 1},
 
-				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "AG", "name": "Nordman", "rating": 2, "turn": 0},
-				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "I", "name": "Bellegarde", "rating": 2, "turn": 0},
-				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "II", "name": "Hohenzollern", "rating": 2, "turn": 0},
+				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "AG", "name": "Nordman", "rating": 2, "turn": 1},
+				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "I", "name": "Bellegarde", "rating": 2, "turn": 1},
+				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "II", "name": "Hohenzollern", "rating": 2, "turn": 1},
 				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "III", "name": "Kollowrat", "rating": 2, "turn": 1},
-				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "IV", "name": "Rosenberg", "rating": 2, "turn": 0},
-				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "VI", "name": "Klenau", "rating": 2, "turn": 0},
-				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "R", "name": "Liechtenstein", "rating": 2, "turn": 0}
+				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "IV", "name": "Rosenberg", "rating": 2, "turn": 1},
+				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "VI", "name": "Klenau", "rating": 2, "turn": 1},
+				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "R", "name": "Liechtenstein", "rating": 2, "turn": 1}
 			],
 			"optional": [
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "AI", "name": "Eugene", "rating": 4, "turn": 0},
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "V", "name": "Macdonald", "rating": 4, "turn": 0},			
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "VI", "name": "Grenier", "rating": 4, "turn": 0},
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "XI", "name": "Marmont", "rating": 4, "turn": 0},			
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "AI", "name": "Eugene", "rating": 4, "turn": 1},
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "V", "name": "Macdonald", "rating": 4, "turn": 1},			
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "VI", "name": "Grenier", "rating": 4, "turn": 1},
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "XI", "name": "Marmont", "rating": 4, "turn": 1},			
 
 				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "V", "name": "Ruess", "rating": 2, "turn": 2},
 				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "IA", "name": "Johann", "rating": 2, "turn": 3}
@@ -209,34 +264,51 @@
 		"title": "Wagram",
 		"subtitle": "Across the Marchfeld: July 5-6, 1809",
 		"image": "wagram",
-		"start": {"turn": 1, "year": 1809, "month": 7, "day": 5, "hour": 9, "minute": 0},		
-		"end": {"turns": 17},
+		"turns": [
+			"Jul 5, 1809 09:00",
+			"Jul 5, 1809 10:30",
+			"Jul 5, 1809 12:00",
+			"Jul 5, 1809 13:30",
+			"Jul 5, 1809 15:00",
+			"Jul 5, 1809 16:30",
+			"Jul 5, 1809 18:00",
+			"Jul 5, 1809 19:30",			
+			"Jul 5/6, 1809 Night",
+			"Jul 6, 1809 04:00",
+			"Jul 6, 1809 05:30",
+			"Jul 6, 1809 07:00",
+			"Jul 6, 1809 08:30",
+			"Jul 6, 1809 10:00",
+			"Jul 6, 1809 11:30",
+			"Jul 6, 1809 13:00",
+			"Jul 6, 1809 14:30"
+		],						
 		"command": {
 			"chits": [
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "G", "name": "Napoleon", "rating": 5, "turn": 0},									
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "II", "name": "Oudinot", "rating": 4, "turn": 0},
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "III", "name": "Davout", "rating": 4, "turn": 0},
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "IV", "name": "Massena", "rating": 4, "turn": 0},
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "VII", "name": "Wrede", "rating": 4, "turn": 0},
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "IX", "name": "Bernadotte", "rating": 4, "turn": 0},
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "whitered", "code": "CR", "name": "Bessiers", "rating": 4, "turn": 0},
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "G", "name": "Napoleon", "rating": 5, "turn": 1},
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "II", "name": "Oudinot", "rating": 4, "turn": 1},
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "III", "name": "Davout", "rating": 4, "turn": 1},
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "IV", "name": "Massena", "rating": 4, "turn": 1},
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "VII", "name": "Wrede", "rating": 4, "turn": 1},
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "IX", "name": "Bernadotte", "rating": 4, "turn": 1},
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "whitered", "code": "CR", "name": "Bessiers", "rating": 4, "turn": 1},
 
-				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "AG", "name": "Nordman", "rating": 2, "turn": 0},
-				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "I", "name": "Bellegarde", "rating": 2, "turn": 0},
-				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "II", "name": "Hohenzollern", "rating": 2, "turn": 0},
+				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "AG", "name": "Nordman", "rating": 2, "turn": 1},
+				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "I", "name": "Bellegarde", "rating": 2, "turn": 1},
+				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "II", "name": "Hohenzollern", "rating": 2, "turn": 1},
 				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "III", "name": "Kollowrat", "rating": 2, "turn": 1},
-				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "IV", "name": "Rosenberg", "rating": 2, "turn": 0},
-				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "VI", "name": "Klenau", "rating": 2, "turn": 0},
-				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "R", "name": "Liechtenstein", "rating": 2, "turn": 0}
+				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "IV", "name": "Rosenberg", "rating": 2, "turn": 1},
+				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "VI", "name": "Klenau", "rating": 2, "turn": 1},
+				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "R", "name": "Liechtenstein", "rating": 2, "turn": 1}
 			],
 			"optional": [
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "AI", "name": "Eugene", "rating": 4, "turn": 0},
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "V", "name": "Macdonald", "rating": 4, "turn": 0},			
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "VI", "name": "Grenier", "rating": 4, "turn": 0},
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "XI", "name": "Marmont", "rating": 4, "turn": 0},			
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "AI", "name": "Eugene", "rating": 4, "turn": 1},
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "V", "name": "Macdonald", "rating": 4, "turn": 1},			
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "VI", "name": "Grenier", "rating": 4, "turn": 1},
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "XI", "name": "Marmont", "rating": 4, "turn": 1},			
 
 				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "V", "name": "Ruess", "rating": 2, "turn": 2},
-				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "IA", "name": "Johann", "rating": 2, "turn": 3}
+				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "IA", "name": "Johann", "rating": 2, "turn": 12}
 			]
 		},
 		"modifiers": [
@@ -258,34 +330,55 @@
 		"title": "Wagram",
 		"subtitle": "Across the Danube: July 4-6, 1809",
 		"image": "wagram",
-		"start": {"turn": 1, "year": 1809, "month": 7, "day": 4, "hour": 23, "minute": 0},		
-		"end": {"turns": 21},
+		"turns": [
+			"Jul 4, 1809 Night",
+			"Jul 4/5, 1809 Night",
+			"Jul 5, 1809 07:00",
+			"Jul 5, 1809 08:30",
+			"Jul 5, 1809 10:00",
+			"Jul 5, 1809 11:30",
+			"Jul 5, 1809 13:00",
+			"Jul 5, 1809 14:30",
+			"Jul 5, 1809 16:00",
+			"Jul 5, 1809 17:30",
+			"Jul 5, 1809 19:00",
+			"Jul 5, 1809 20:30",						
+			"Jul 5/6, 1809 Night",			
+			"Jul 6, 1809 04:00",
+			"Jul 6, 1809 05:30",
+			"Jul 6, 1809 07:00",
+			"Jul 6, 1809 08:30",
+			"Jul 6, 1809 10:00",
+			"Jul 6, 1809 11:30",
+			"Jul 6, 1809 13:00",
+			"Jul 6, 1809 14:30"
+		],								
 		"command": {
 			"chits": [
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "G", "name": "Napoleon", "rating": 5, "turn": 0},									
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "II", "name": "Oudinot", "rating": 4, "turn": 0},
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "III", "name": "Davout", "rating": 4, "turn": 0},
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "IV", "name": "Massena", "rating": 4, "turn": 0},
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "VII", "name": "Wrede", "rating": 4, "turn": 0},
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "IX", "name": "Bernadotte", "rating": 4, "turn": 0},
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "whitered", "code": "CR", "name": "Bessiers", "rating": 4, "turn": 0},
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "G", "name": "Napoleon", "rating": 5, "turn": 1},
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "II", "name": "Oudinot", "rating": 4, "turn": 1},
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "III", "name": "Davout", "rating": 4, "turn": 1},
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "IV", "name": "Massena", "rating": 4, "turn": 1},
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "VII", "name": "Wrede", "rating": 4, "turn": 1},
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "IX", "name": "Bernadotte", "rating": 4, "turn": 1},
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "whitered", "code": "CR", "name": "Bessiers", "rating": 4, "turn": 1},
 
-				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "AG", "name": "Nordman", "rating": 2, "turn": 0},
-				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "I", "name": "Bellegarde", "rating": 2, "turn": 0},
-				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "II", "name": "Hohenzollern", "rating": 2, "turn": 0},
+				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "AG", "name": "Nordman", "rating": 2, "turn": 1},
+				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "I", "name": "Bellegarde", "rating": 2, "turn": 1},
+				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "II", "name": "Hohenzollern", "rating": 2, "turn": 1},
 				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "III", "name": "Kollowrat", "rating": 2, "turn": 1},
-				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "IV", "name": "Rosenberg", "rating": 2, "turn": 0},
-				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "VI", "name": "Klenau", "rating": 2, "turn": 0},
-				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "R", "name": "Liechtenstein", "rating": 2, "turn": 0}
+				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "IV", "name": "Rosenberg", "rating": 2, "turn": 1},
+				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "VI", "name": "Klenau", "rating": 2, "turn": 1},
+				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "R", "name": "Liechtenstein", "rating": 2, "turn": 1}
 			],
 			"optional": [
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "AI", "name": "Eugene", "rating": 4, "turn": 0},
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "V", "name": "Macdonald", "rating": 4, "turn": 0},			
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "VI", "name": "Grenier", "rating": 4, "turn": 0},
-				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "XI", "name": "Marmont", "rating": 4, "turn": 0},			
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "AI", "name": "Eugene", "rating": 4, "turn": 1},
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "V", "name": "Macdonald", "rating": 4, "turn": 1},			
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "VI", "name": "Grenier", "rating": 4, "turn": 1},
+				{"side": "French", "image": "french", "chitcolor": "blue", "labelcolor": "white", "code": "XI", "name": "Marmont", "rating": 4, "turn": 1},			
 
 				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "V", "name": "Ruess", "rating": 2, "turn": 2},
-				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "IA", "name": "Johann", "rating": 2, "turn": 3}
+				{"side": "Austrian", "image": "austrian", "chitcolor": "white", "labelcolor": "gray", "code": "IA", "name": "Johann", "rating": 2, "turn": 16}
 			]
 		},
 		"modifiers": [

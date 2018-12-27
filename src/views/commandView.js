@@ -51,7 +51,7 @@ var CommandView = React.createClass({
         return (e) => {
             this.props.removeChitFromOptional(chit);
             this.props.addChitToPool(chit);
-            this.props.addChitToCup(chit);
+            //this.props.addChitToCup(chit);
         }
     },
     onDiceRoll(d) {

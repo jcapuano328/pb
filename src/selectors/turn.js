@@ -7,26 +7,14 @@ const getTurn = (state) => state.current.turn;
 
 export default createSelector(
     [getTurn, getGame],
-    (turn, game) => {
-        /*
-        if (!game || !game.start) {
-            return '';
+    (turn, game) => {        
+        let t = turn;
+        if (special = game.turns.some(t => t.includes('Special'))) {
+            t--;
         }
-		let d = moment(new Date(game.start.year, game.start.month-1, game.start.day, game.start.hour, game.start.minute));
-		let o = (turn - 1) * TURN_MINS;
-		d.add(o, 'minutes');
-        return d.format("MMM DD, YYYY HH:mm");
-        */
-        let s = 'Turn ' + turn.toString();
-        if (turn > 0) {
-            if (game && game.start) {
-                let d = moment(new Date(game.start.year, game.start.month-1, game.start.day, game.start.hour, game.start.minute));
-                let o = (turn - 1) * TURN_MINS;
-                d.add(o, 'minutes');
-                s += ': ' + d.format("MMM DD, YYYY HH:mm");    
-            }
-        } else {
-            s += ': Special';
+        let s = 'Turn ' + t.toString();
+        if (turn < game.turns.length) {
+            s += ': ' + game.turns[turn-1];
         }
 
         return s;

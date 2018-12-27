@@ -9,9 +9,7 @@ export const reset = (e) => (dispatch,getState) => {
     const {current} = getState();
     e = e || {
         id: current.game, 
-        start: {
-            turn: game && game.start ? game.start.turn : 1
-        }, 
+        turn: 1, 
         command: {
             chits: game && game.command && game.command.chits ? game.command.chits : [], 
             optional: game && game.command && game.command.optional ? game.command.optional : []
@@ -20,7 +18,7 @@ export const reset = (e) => (dispatch,getState) => {
     
     let data = {
         game: e.id,
-        turn: e.start.turn,
+        turn: e.turn || 1,
         command: {
             cup: [],
             delay: null,
@@ -35,13 +33,13 @@ export const reset = (e) => (dispatch,getState) => {
 
 export const prevTurn = () => (dispatch,getState) => {    
     const game = getGame(getState());
-    dispatch({type: types.PREV_TURN, value: game.start.turn});
+    dispatch({type: types.PREV_TURN, value: 1});
 }
 export const nextTurn = () => (dispatch,getState) => {    
     const game = getGame(getState());
     const {current} = getState();
-    dispatch({type: types.NEXT_TURN, value: game.end.turns});
-    if (current.turn < game.end.turns) {
+    dispatch({type: types.NEXT_TURN, value: game.turns.length});
+    if (current.turn < game.turns.length) {
         //resetChitCup()(dispatch,getState);
         dispatch({type: types.SET_CHITS, value: []});
         dispatch({type: types.SET_DELAY, value: null});
@@ -95,6 +93,13 @@ export const removeChitFromCurrent = (chit) => (dispatch,getState) => {
 
 export const addChitToPool = (chit) => (dispatch,getState) => {    
     dispatch({type: types.ADD_CHIT_TO_POOL, value: {chit: chit}});    
+
+    let a = getAvailable(getState());
+    if (a.find((c) => c.side === chit.side && c.code === chit.code)) {
+        addChitToCup(chit)(dispatch, getState);
+        //const {current} = getState();
+        //dispatch({type: types.SET_CUP, value: Command.add(chit,current.command.cup)});        
+    }
 }
 
 export const removeChitFromOptional = (chit) => (dispatch,getState) => {
