@@ -13,7 +13,7 @@ export default createSelector(
             t--;
         }
         let s = 'Turn ' + t.toString();
-        if (turn < game.turns.length) {
+        if (turn <= game.turns.length) {
             s += ': ' + game.turns[turn-1];
         }
 
