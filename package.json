@@ -1,6 +1,6 @@
 {
 	"name": "pb",
-	"version": "1.0.22",
+	"version": "1.0.24",
 	"private": true,
 	"scripts": {
 		"start": "node node_modules/react-native/local-cli/cli.js start",
@@ -15,7 +15,7 @@
 		"emulate-s3": "%ANDROID_HOME%/tools/emulator.exe -avd Galaxy_SIII",
 		"emulate-nexus7": "%ANDROID_HOME%/tools/emulator.exe -avd Nexus_7",    	
 		"push": "code-push release-react PubBattlesAssistant android",
-		"promote": "code-push promote PubBattlesAssistant Staging Production --description 'v1.0.22' --mandatory",    
+		"promote": "code-push promote PubBattlesAssistant Staging Production --description 'v1.0.24' --mandatory",    
 		"bridge": "adb reverse tcp:8081 tcp:8081",
 		"menu": "adb shell input keyevent 82",
 		"logs": "adb logcat *:S ReactNative:V ReactNativeJS:V"
